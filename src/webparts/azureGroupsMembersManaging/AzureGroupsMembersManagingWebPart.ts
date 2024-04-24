@@ -29,7 +29,9 @@ export default class AzureGroupsMembersManagingWebPart extends BaseClientSideWeb
         isDarkTheme: this._isDarkTheme,
         environmentMessage: this._environmentMessage,
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
-        userDisplayName: this.context.pageContext.user.displayName
+        userDisplayName: this.context.pageContext.user.displayName,
+        context:this.context
+        
       }
     );
 
@@ -39,6 +41,8 @@ export default class AzureGroupsMembersManagingWebPart extends BaseClientSideWeb
   protected onInit(): Promise<void> {
     return this._getEnvironmentMessage().then(message => {
       this._environmentMessage = message;
+      console.log(this.context.pageContext.web.title);
+      
     });
   }
 
