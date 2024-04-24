@@ -3,19 +3,25 @@ import * as React from 'react';
 // import type { IAzureGroupsMembersManagingProps } from './IAzureGroupsMembersManagingProps';
 // import { escape } from '@microsoft/sp-lodash-subset';
 
-//import GetMembers from './GetMembers/GetMembers';
+import GetMembers from './GetMembers/GetMembers';
+
+
 import GetGroups from './GetGroups/GetGroups';
+import AddMember from './AddMember/AddMember';
 
 
 function AzureGroupsMembersManaging(props:any){
-
+const {context} = props;
+console.log(context.pageContext.user.displayName);
 
     return (
      <section>
       
-      {props.context.pageContext.web.title}
-   {/* <GetMembers context = {props.context}/> */}
-   <GetGroups context = {props.context}/>
+     Welcome,  {context.pageContext.user.displayName}
+
+   <GetMembers context = {props.context}/>
+   <GetGroups context = {context}/>
+   <AddMember context = {context}/>
      </section>
       
     );
