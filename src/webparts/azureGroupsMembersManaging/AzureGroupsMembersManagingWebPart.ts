@@ -40,7 +40,6 @@ export default class AzureGroupsMembersManagingWebPart extends BaseClientSideWeb
   protected onInit(): Promise<void> {
     return this._getEnvironmentMessage().then(message => {
       this._environmentMessage = message;
-      console.log(this.context.pageContext.web.title);
       
     });
   }

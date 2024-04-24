@@ -2,6 +2,7 @@ import * as React from "react";
 import { useEffect } from "react";
 import { getGroupsService } from "../../services/getGroupsService";
 import { IGroupProps } from "./GroupProps";
+import { Button } from '@fluentui/react-components';
 
 export default function GetGroups(props: any) {
   const [groups, setGroups] = React.useState<any[]>([]);
@@ -29,11 +30,12 @@ export default function GetGroups(props: any) {
   return (
     <div>
       {loading ? (
-        <div>Loading...</div>
+        <div>Loading groups...</div>
       ) : (
         <div>
+             <h2> Get groups</h2>
           {groups.map((group: IGroupProps) => (
-            <div key={group.id}>{group.displayName}</div>
+            <Button onClick={()=>{props.getChosenGroupId(group.id)}}>{group.displayName}</Button>
           ))}
         </div>
       )}

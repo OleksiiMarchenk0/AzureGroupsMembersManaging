@@ -7,25 +7,29 @@ import GetMembers from "./GetMembers/GetMembers";
 
 import GetGroups from "./GetGroups/GetGroups";
 import AddMember from "./AddMember/AddMember";
-import RemoveMember from "./RemoveMember/RemoveMember";
+
+import { FieldTextRenderer } from "@pnp/spfx-controls-react/lib/FieldTextRenderer";
 
 function AzureGroupsMembersManaging(props: any) {
   const { context } = props;
-  console.log(context.pageContext.user.displayName);
+  const [chosenGroupId, setChosenGroupId] = React.useState<string>("");
+
+  const getChosenGroupId = (id: string) => {
+    console.log(`${id} - test`);
+    setChosenGroupId(id);
+  };
 
   return (
     <section>
-      Welcome, {context.pageContext.user.displayName}
-      <h2> Get groups</h2>
-      <GetGroups context={context} />
-      <h2> Get members</h2>
-      <GetMembers context={props.context} />
-      
-      <h2> Modify members</h2>
-      <AddMember context={context} />
+      <FieldTextRenderer
+        text={`Welcome, ${context.pageContext.user.displayName}`}
+        className={"some-class"}
+        cssProps={{ background: "#f00" }}
+      />
 
-      <h2>Remove User</h2>
-      <RemoveMember context = {context} />
+      <GetGroups context={context} getChosenGroupId={getChosenGroupId} />
+      <GetMembers context={props.context} groupId={chosenGroupId} />
+      <AddMember context={context} groupId={chosenGroupId} />
     </section>
   );
 }

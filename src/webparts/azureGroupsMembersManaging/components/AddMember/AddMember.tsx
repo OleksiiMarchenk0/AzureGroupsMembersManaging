@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { setMembersService } from '../../services/setMembersService';
 import { getADUser } from '../../services/getADUser';
-
+import { Button } from '@fluentui/react-components';
+//, CompoundButton, MenuButton, SplitButton, ToggleButton
 export default function AddMember(props:any) {
     const [users, setUsers] = React.useState<any[]>([]);
     const [loading, setLoading] = React.useState<boolean>(true);
@@ -32,10 +33,13 @@ export default function AddMember(props:any) {
 
 
   
-      const groupId='d3e99e86-9150-4433-8d2a-0bacce3a4211' // test var EuvicGermanySecurity
-      const userId = '379c8ead-dc9e-4352-996f-32436f6ca648' //test var  Kacper Suchecki
-      const addUsers = async () => {
+    const {groupId} = props;
+      const addUsers = async (userId:string) => {
+        console.log(`${userId} is adding`);
+        
         try {
+          console.log(`userId ${userId}`);
+          
           await setMembersService(context, groupId, [userId]);
         } catch (error) {
           console.error("Error adding members:", error);
@@ -46,13 +50,17 @@ export default function AddMember(props:any) {
 
   return (
     <div>
-      <button onClick={addUsers}>Add member</button>
+  
       {loading ? (
-        <div>Loading...</div>
+        <div>Loading all AAD users...</div>
       ) : (
         <div>
+          <h2> Modify members of group</h2>
           {users.map((user: any) => (
-            <div key={user.id}>{user.displayName}</div>
+            <div key={user.id}>
+             <span>  {user.displayName}</span>
+             <Button onClick={()=> { addUsers(user.id)}} appearance="primary">Add</Button>
+              </div>
           ))}
         </div>
       )}
