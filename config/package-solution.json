@@ -32,6 +32,13 @@
         "id": "b0758a2a-8bb3-48cd-a599-b3a07195968e",
         "version": "1.0.0.0"
       }
+    ],
+    "webApiPermissionRequests": [
+
+      {
+        "resource": "",
+        "scope": "user_impersonation"
+      }
     ]
   },
   "paths": {
