@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "azure-groups-members-managing-client-side-solution",
+    "id": "9fe03f6d-f464-4f1e-aa72-fc94b99b7703",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.18.2"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "azure-groups-members-managing description"
+      },
+      "longDescription": {
+        "default": "azure-groups-members-managing description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "azure-groups-members-managing Feature",
+        "description": "The feature that activates elements of the azure-groups-members-managing solution.",
+        "id": "b0758a2a-8bb3-48cd-a599-b3a07195968e",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/azure-groups-members-managing.sppkg"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "azure-groups-members-managing-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/azureGroupsMembersManaging/AzureGroupsMembersManagingWebPart.js",
+          "manifest": "./src/webparts/azureGroupsMembersManaging/AzureGroupsMembersManagingWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "AzureGroupsMembersManagingWebPartStrings": "lib/webparts/azureGroupsMembersManaging/loc/{locale}.js"
+  }
+}
