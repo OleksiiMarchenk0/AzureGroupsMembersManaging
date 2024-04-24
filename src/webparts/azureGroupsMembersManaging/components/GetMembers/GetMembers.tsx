@@ -2,7 +2,8 @@ import * as  React from 'react'
 import { useEffect } from 'react';
 import { getMembersService } from '../../services/getMembersService';
 import { Button } from '@fluentui/react-components';
-import { removeMemberService } from '../../services/removeMember';
+import { removeMemberService } from '../../services/removeMemberService';
+
 
 
 function GetMembers(props: any) {

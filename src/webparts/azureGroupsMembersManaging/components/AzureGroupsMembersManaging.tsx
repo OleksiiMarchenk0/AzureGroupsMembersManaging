@@ -8,7 +8,6 @@ import GetMembers from "./GetMembers/GetMembers";
 import GetGroups from "./GetGroups/GetGroups";
 import AddMember from "./AddMember/AddMember";
 
-import { FieldTextRenderer } from "@pnp/spfx-controls-react/lib/FieldTextRenderer";
 
 function AzureGroupsMembersManaging(props: any) {
   const { context } = props;
@@ -21,11 +20,7 @@ function AzureGroupsMembersManaging(props: any) {
 
   return (
     <section>
-      <FieldTextRenderer
-        text={`Welcome, ${context.pageContext.user.displayName}`}
-        className={"some-class"}
-        cssProps={{ background: "#f00" }}
-      />
+
 
       <GetGroups context={context} getChosenGroupId={getChosenGroupId} />
       <GetMembers context={props.context} groupId={chosenGroupId} />
