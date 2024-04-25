@@ -4,22 +4,30 @@ import { getGroupsService } from "../../services/getGroupsService";
 import { IGroupProps } from "./GroupProps";
 import { Button } from "@fluentui/react-components";
 import { getGroupOwnersService } from "../../services/getGroupOwnersService";
-import { RecognizeUserRoleHelper } from "../../helper/RecognizeUserRoleHelper";
+import { RecognizeIsUserGlobalAdminHelper } from "../../helper/RecognizeIsUserGlobalAdminHelper";
 
 export default function GetGroups(props: any) {
   const [groups, setGroups] = React.useState<any[]>([]);
   const [filteredGroups, setFilteredGroups] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
-  // const [globalAdmins, setGlobalAdmins] = React.useState<any[]>([]);
-  // const [me, setMe] = React.useState<any[]>([]);
-  const templateRoleId = "62e90394-69f5-4237-9190-012177145e10";
 
+  const templateRoleId = "62e90394-69f5-4237-9190-012177145e10";
+  const [isAdmin, setIsAdmin] = React.useState<boolean | null>(null);
   const { context } = props;
 
-
   useEffect(() => {
-    RecognizeUserRoleHelper(context, templateRoleId);
-  }, [context]);
+    async function checkAdminStatus() {
+      try {
+        const isAdmin = await RecognizeIsUserGlobalAdminHelper(context, templateRoleId);
+        setIsAdmin(isAdmin);
+      } catch (error) {
+        console.error("Error checking admin status:", error);
+        setIsAdmin(false); 
+      }
+    }
+
+    checkAdminStatus();
+  }, [context, templateRoleId]);
 
   //Getting all groups
   useEffect(() => {
@@ -71,6 +79,14 @@ export default function GetGroups(props: any) {
               </Button>
             </div>
           ))}
+
+{isAdmin === null ? (
+        <p>Loading...</p>
+      ) : isAdmin ? (
+        <p>The user is an admin.</p>
+      ) : (
+        <p>The user is not an admin.</p>
+      )}
         
         </div>
       )}
