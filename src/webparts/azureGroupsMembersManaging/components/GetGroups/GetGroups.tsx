@@ -5,7 +5,7 @@ import { IGroupProps } from "./GroupProps";
 import { Button } from "@fluentui/react-components";
 //import { getGroupOwnersService } from "../../services/getGroupOwnersService";
 import { RecognizeIsUserGlobalAdminHelper } from "../../helper/RecognizeIsUserGlobalAdminHelper";
-import { GetOwnedGroups } from "../../helper/GetOwnedGroups,";
+import { GetOwnedGroups } from "../../helper/GetOwnedGroups";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 // import { GetOwnedGroups } from "../../helper/GetOwnedGroups,";
 // import { WebPartContext } from "@microsoft/sp-webpart-base";
@@ -19,9 +19,8 @@ export default function GetGroups(props: any) {
   const [isAdmin, setIsAdmin] = React.useState<boolean | null>(null);
   const { context } = props;
 
-  console.log(filteredGroups);
   
-  //const geID = '5c1aabf4-973a-4b60-bce1-6bf364ed5437';
+
 
 
 
@@ -73,8 +72,8 @@ export default function GetGroups(props: any) {
 	 context: WebPartContext
 	) => {
     try {
-      const { owners, groupsData } = await GetOwnedGroups(context);
-      console.log(owners);
+      const { groupsData } = await GetOwnedGroups(context);
+    //  console.log(owners);
       console.log(groupsData);
       if(groupsData){
         setFilteredGroups(groupsData)
