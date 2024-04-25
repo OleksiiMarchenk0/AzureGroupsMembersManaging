@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { IGroupProps } from './GroupProps';
+import { IGroupProps } from './IGroupProps';
 import { Button } from "@fluentui/react-components";
 
 export default function RenderGroups(props:IListGroupsProps) {
