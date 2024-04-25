@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { setMembersService } from '../../services/setMembersService';
-import { getADUser } from '../../services/getADUser';
+
 import { Button } from '@fluentui/react-components';
+import { getADUserService } from '../../services/getADUserService';
 //, CompoundButton, MenuButton, SplitButton, ToggleButton
 export default function AddMember(props:any) {
     const [users, setUsers] = React.useState<any[]>([]);
@@ -13,7 +14,7 @@ export default function AddMember(props:any) {
     React.useEffect(()=>{
         const fetchUsers = async () => {
           try {
-            const users = await getADUser(context);
+            const users = await getADUserService(context);
             if (users) {
               setUsers(users);
             } else {
@@ -23,7 +24,6 @@ export default function AddMember(props:any) {
             console.error("Error fetching users:", error);
           } finally {
             setLoading(false);
-            console.log(users);
             
           }
         };

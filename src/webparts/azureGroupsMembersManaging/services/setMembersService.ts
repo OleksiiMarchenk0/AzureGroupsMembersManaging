@@ -7,7 +7,7 @@ export const setMembersService = (context: any, groupId:string, userIds:string[]
     };
     
 console.log(newMembers);
-//to fix
+
 
     return context.msGraphClientFactory
         .getClient()

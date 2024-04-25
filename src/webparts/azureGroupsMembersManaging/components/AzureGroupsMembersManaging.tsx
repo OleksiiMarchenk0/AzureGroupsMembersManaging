@@ -14,7 +14,6 @@ function AzureGroupsMembersManaging(props: any) {
   const [chosenGroupId, setChosenGroupId] = React.useState<string>("");
 
   const getChosenGroupId = (id: string) => {
-    console.log(`${id} - test`);
     setChosenGroupId(id);
   };
 

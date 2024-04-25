@@ -11,7 +11,7 @@ function GetMembers(props: any) {
   const [members, setMembers] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
   const {context} = props;
-  console.log(context);
+
 
 
   useEffect(()=>{
@@ -26,7 +26,7 @@ function GetMembers(props: any) {
           console.error("Error: Invalid data structure");
         }
       } catch (error) {
-        console.error("Error fetching members:", error);
+        
       } finally {
         setLoading(false);
       }
@@ -55,13 +55,20 @@ function GetMembers(props: any) {
       ) : (
         <div>
            <h2> Get members of  groups</h2>
-           
-          {members.map((member: any) => (
+         
+          {
+          
+          members && members.length>0 ?
+          members.map((member: any) => (
            <div key={member.id}>
            <span>  {member.displayName}</span>
            <Button onClick={()=> { removeUser(member.id)}} appearance="primary">Remove</Button>
             </div>
-          ))}
+          ))
+          :<div>Empty list of members</div>
+          
+          
+          }
         </div>
       )}
     </div>
