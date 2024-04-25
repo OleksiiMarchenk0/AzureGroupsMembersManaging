@@ -7,7 +7,7 @@ export default function AddMember(props: any) {
   const [users, setUsers] = React.useState<[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
 
-  const { context } = props;
+  const { context,groupId, isGroupChosen } = props;
 
   // getting users
   React.useEffect(() => {
@@ -29,10 +29,11 @@ export default function AddMember(props: any) {
     fetchUsers();
   }, [context]);
 
-  const { groupId } = props;
+
   const addUsers = async (userId: string) => {
     try {
       await setMembersService(context, groupId, [userId]);
+      
     } catch (error) {
       console.error("Error adding members:", error);
     } finally {
@@ -44,7 +45,7 @@ export default function AddMember(props: any) {
       {loading ? (
         <div>Loading all AAD users...</div>
       ) : (
-        <RenderADMembers users={users} addUsers={addUsers} />
+        <RenderADMembers users={users} addUsers={addUsers}  isGroupChosen ={isGroupChosen}/>
       )}
     </div>
   );
