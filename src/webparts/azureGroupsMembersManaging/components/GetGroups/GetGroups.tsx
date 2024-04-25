@@ -3,8 +3,14 @@ import { useEffect } from "react";
 import { getGroupsService } from "../../services/getGroupsService";
 import { IGroupProps } from "./GroupProps";
 import { Button } from "@fluentui/react-components";
-import { getGroupOwnersService } from "../../services/getGroupOwnersService";
+//import { getGroupOwnersService } from "../../services/getGroupOwnersService";
 import { RecognizeIsUserGlobalAdminHelper } from "../../helper/RecognizeIsUserGlobalAdminHelper";
+import { GetOwnedGroups } from "../../helper/GetOwnedGroups,";
+import { WebPartContext } from "@microsoft/sp-webpart-base";
+// import { GetOwnedGroups } from "../../helper/GetOwnedGroups,";
+// import { WebPartContext } from "@microsoft/sp-webpart-base";
+
+
 
 export default function GetGroups(props: any) {
   const [groups, setGroups] = React.useState<any[]>([]);
@@ -14,20 +20,42 @@ export default function GetGroups(props: any) {
   const templateRoleId = "62e90394-69f5-4237-9190-012177145e10";
   const [isAdmin, setIsAdmin] = React.useState<boolean | null>(null);
   const { context } = props;
-
+//const geID = '5c1aabf4-973a-4b60-bce1-6bf364ed5437';
+  // set isAdmin
   useEffect(() => {
     async function checkAdminStatus() {
       try {
-        const isAdmin = await RecognizeIsUserGlobalAdminHelper(context, templateRoleId);
+        const isAdmin = await RecognizeIsUserGlobalAdminHelper(
+          context,
+          templateRoleId
+        );
         setIsAdmin(isAdmin);
       } catch (error) {
         console.error("Error checking admin status:", error);
-        setIsAdmin(false); 
+        setIsAdmin(false);
       }
     }
 
     checkAdminStatus();
   }, [context, templateRoleId]);
+
+  //Getting filteredGroups
+ useEffect(()=>{
+  const fetchFilteredGroups = async (context:WebPartContext, groups:any) => {
+    try {
+      const filteredGroupsData = await GetOwnedGroups(context,groups);
+      console.log(filteredGroupsData);
+      setFilteredGroups(filteredGroups)
+      
+    } catch (error) {
+      console.error("Error fetching groups:", error);
+    } finally {
+     // setLoading(false);
+    }
+  };
+
+  fetchFilteredGroups(context,groups);
+ },[isAdmin])
 
   //Getting all groups
   useEffect(() => {
@@ -47,19 +75,9 @@ export default function GetGroups(props: any) {
     };
 
     fetchAllGroups();
-  }, [props.context]);
+  }, [isAdmin]);
 
-  // Filtering groups
-  useEffect(() => {
-    //const me = getMe(context);
 
-    groups.map((group) => {
-      getGroupOwnersService(context, group.id).then(
-        (response: any) => response.json
-      );
-    });
-    setFilteredGroups(groups);
-  }, [groups]);
 
   return (
     <div>
@@ -80,14 +98,13 @@ export default function GetGroups(props: any) {
             </div>
           ))}
 
-{isAdmin === null ? (
-        <p>Loading...</p>
-      ) : isAdmin ? (
-        <p>The user is an admin.</p>
-      ) : (
-        <p>The user is not an admin.</p>
-      )}
-        
+          {isAdmin === null ? (
+            <p>Loading...</p>
+          ) : isAdmin ? (
+            <p>The user is an admin.</p>
+          ) : (
+            <p>The user is not an admin.</p>
+          )}
         </div>
       )}
     </div>
