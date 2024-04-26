@@ -13,6 +13,6 @@ export const removeMemberService = (context: any, groupId:string, userId:string)
                 .delete();
         })
         .then((response: any) => {
-            return response.value;
+            return response;
         });
 };

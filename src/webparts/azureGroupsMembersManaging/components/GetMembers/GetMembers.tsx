@@ -5,26 +5,25 @@ import { removeMemberService } from "../../services/removeMemberService";
 import RenderMembers from "./RenderMembers";
 
 function GetMembers(props: any) {
-  const { groupId, context,isGroupChosen } = props;
+  const { groupId, context, isGroupChosen } = props;
   const [members, setMembers] = React.useState<[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
 
+  const fetchData = async () => {
+    try {
+      const membersData = await getMembersService(context, groupId);
+      if (membersData) {
+        setMembers(membersData);
+      } else {
+        console.error("Error: Invalid data structure");
+      }
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const membersData = await getMembersService(context, groupId);
-        if (membersData) {
-          setMembers(membersData);
-        } else {
-          console.error("Error: Invalid data structure");
-        }
-      } catch (error) {
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, [groupId]);
 
@@ -32,6 +31,9 @@ function GetMembers(props: any) {
     try {
       const response = await removeMemberService(context, groupId, userId);
       console.log(response);
+
+     setMembers((members:any) => members.filter((member:any) => member.id !== userId));
+
     } catch (error) {
       console.error("Error fetching members:", error);
     } finally {
@@ -43,7 +45,11 @@ function GetMembers(props: any) {
         <div>Loading...</div>
       ) : (
         <>
-          <RenderMembers members={members} removeUser={removeUser} isGroupChosen={isGroupChosen} />
+          <RenderMembers
+            members={members}
+            removeUser={removeUser}
+            isGroupChosen={isGroupChosen}
+          />
         </>
       )}
     </div>
