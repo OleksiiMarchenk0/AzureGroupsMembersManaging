@@ -18,6 +18,6 @@ console.log(newMembers);
                 .update(newMembers);
         })
         .then((response: any) => {
-            return response.value;
+            return response;
         });
 };

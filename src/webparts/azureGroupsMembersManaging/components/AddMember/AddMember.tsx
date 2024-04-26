@@ -1,53 +1,33 @@
 import * as React from "react";
-import { setMembersService } from "../../services/setMembersService";
+// import { setMembersService } from "../../services/setMembersService";
 
-import { getADUserService } from "../../services/getADUserService";
+//import { getADUserService } from "../../services/getADUserService";
 import RenderADMembers from "./RenderADMembers";
 export default function AddMember(props: any) {
-  const [users, setUsers] = React.useState<[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
 
-  const { context,groupId, isGroupChosen } = props;
+  //const [loading, setLoading] = React.useState<boolean>(true);
 
-  // getting users
-  React.useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const users = await getADUserService(context);
-        if (users) {
-          setUsers(users);
-        } else {
-          console.error("Error: Invalid data structure");
-        }
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUsers();
-  }, [context]);
+  const {  isGroupChosen, addUsers,loading,adusers } = props;
 
 
-  const addUsers = async (userId: string) => {
-    try {
-await setMembersService(context, groupId, [userId]);
-
+  // const addUsers = async (userId: string) => {
+  //   try {
+  //    await setMembersService(context, groupId, [userId]);
+  //       //wywolanie funkcji resresh members
 
       
-    } catch (error) {
-      console.error("Error adding members:", error);
-    } finally {
-    }
-  };
+  //   } catch (error) {
+  //     console.error("Error adding members:", error);
+  //   } finally {
+  //   }
+  // };
 
   return (
     <div>
       {loading ? (
         <div>Loading all AAD users...</div>
       ) : (
-        <RenderADMembers users={users} addUsers={addUsers}  isGroupChosen ={isGroupChosen}/>
+        <RenderADMembers users={adusers} addUsers={addUsers}  isGroupChosen ={isGroupChosen}/>
       )}
     </div>
   );
