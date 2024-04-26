@@ -32,7 +32,9 @@ export default function AddMember(props: any) {
 
   const addUsers = async (userId: string) => {
     try {
-      await setMembersService(context, groupId, [userId]);
+await setMembersService(context, groupId, [userId]);
+
+
       
     } catch (error) {
       console.error("Error adding members:", error);

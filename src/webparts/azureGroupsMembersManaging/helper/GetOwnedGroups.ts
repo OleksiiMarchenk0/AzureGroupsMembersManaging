@@ -11,7 +11,6 @@ export async function GetOwnedGroups(context: WebPartContext): Promise<any> {
       groupId: string;
       groupOwnersResponse: any;
     }
-    const groupsData = await getGroupsService(context);
     const resultArray: MyObject[] = [];
 
     // Fetch owners for each group and collect promises

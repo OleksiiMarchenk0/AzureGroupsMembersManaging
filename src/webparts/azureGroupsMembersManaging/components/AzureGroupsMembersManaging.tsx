@@ -25,7 +25,7 @@ function AzureGroupsMembersManaging(props: any) {
 
       <GetGroups context={context} getChosenGroupId={getChosenGroupId} />
       <GetMembers context={props.context} groupId={chosenGroupId} isGroupChosen={isGroupChosen}  />
-      <AddMember context={context} groupId={chosenGroupId} />
+      <AddMember context={context} groupId={chosenGroupId} isGroupChosen={isGroupChosen} />
     </section>
   );
 }
