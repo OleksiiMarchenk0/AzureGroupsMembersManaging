@@ -10,17 +10,6 @@ export default function AddMember(props: any) {
   const {  isGroupChosen, addUsers,loading,adusers } = props;
 
 
-  // const addUsers = async (userId: string) => {
-  //   try {
-  //    await setMembersService(context, groupId, [userId]);
-  //       //wywolanie funkcji resresh members
-
-      
-  //   } catch (error) {
-  //     console.error("Error adding members:", error);
-  //   } finally {
-  //   }
-  // };
 
   return (
     <div>
