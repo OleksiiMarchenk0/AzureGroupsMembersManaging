@@ -1,19 +1,20 @@
 import * as React from "react";
+import { WebPartContext } from "@microsoft/sp-webpart-base";
 // import styles from './AzureGroupsMembersManaging.module.scss';
-// import type { IAzureGroupsMembersManagingProps } from './IAzureGroupsMembersManagingProps';
-// import { escape } from '@microsoft/sp-lodash-subset';
 
 import GetMembers from "./GetMembers/GetMembers";
-
 import GetGroups from "./GetGroups/GetGroups";
 import AddMember from "./AddMember/AddMember";
+
 import { getMembersService } from "../services/getMembersService";
 import { getGroupsService } from "../services/getGroupsService";
-import { WebPartContext } from "@microsoft/sp-webpart-base";
-import { GetOwnedGroups } from "../helper/GetOwnedGroups";
 import { removeMemberService } from "../services/removeMemberService";
 import { setMembersService } from "../services/setMembersService";
 import { getADUserService } from "../services/getADUserService";
+
+
+import { GetOwnedGroups } from "../helper/GetOwnedGroups";
+
 
 function AzureGroupsMembersManaging(props: any) {
   const { context } = props;
@@ -22,7 +23,6 @@ function AzureGroupsMembersManaging(props: any) {
 
   const [members, setMembers] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
-  const [isMemberAdded, setIsMemberAdded] = React.useState<boolean>(false);
   const [groups, setGroups] = React.useState<[]>([]);
   const [filteredGroups, setFilteredGroups] = React.useState<[]>([]);
   const [adusers, setadusers] = React.useState<[]>([]);
@@ -30,8 +30,6 @@ function AzureGroupsMembersManaging(props: any) {
   const getChosenGroupId = (id: string) => {
     setChosenGroupId(id);
     setIsGroupChosen(true);
-    console.log("getChoswnGroupId");
-    console.log(id);
   };
 
   //Getting all groups
@@ -61,7 +59,6 @@ function AzureGroupsMembersManaging(props: any) {
         const { groupsData } = await GetOwnedGroups(context);
         if (groupsData) {
           setFilteredGroups(groupsData);
-          console.log("witaj");
         }
       } catch (error) {
         console.error("Error occurred while fetching owned groups:", error);
@@ -75,12 +72,9 @@ function AzureGroupsMembersManaging(props: any) {
   //Getting members
   const fetchMembers = async () => {
     try {
-      console.log("fetchMembers");
 
       const membersData = await getMembersService(context, chosenGroupId);
       if (membersData) {
-        console.log(membersData);
-
         setMembers(membersData);
       } else {
         console.error("Error: Invalid data structure");
@@ -95,10 +89,6 @@ function AzureGroupsMembersManaging(props: any) {
     fetchMembers();
   }, [chosenGroupId]);
 
-  React.useEffect(()=>{
-    console.log(isMemberAdded);
-    
-  }, [isMemberAdded])
 
   // Get AD Users
   React.useEffect(() => {
@@ -106,10 +96,8 @@ function AzureGroupsMembersManaging(props: any) {
       try {
         let users = await getADUserService(context);
         if (users) {
-           const memberIds: string[] = members.map(member => member.id);
-          users = users.filter((user: any) => memberIds.indexOf(user.id) === -1);
-          
-
+           const actualMemberIds: string[] = members.map(member => member.id);
+          users = users.filter((user: any) => actualMemberIds.indexOf(user.id) === -1);
           setadusers(users);
         } else {
           console.error("Error: Invalid data structure");
@@ -127,13 +115,11 @@ function AzureGroupsMembersManaging(props: any) {
   // Remove user from group
   const removeUser = async (userId: string) => {
     try {
-      const response = await removeMemberService(
+      await removeMemberService(
         context,
         chosenGroupId,
         userId
       );
-      console.log(response);
-
       setMembers((members: any) =>
         members.filter((member: any) => member.id !== userId)
       );
@@ -149,7 +135,6 @@ function AzureGroupsMembersManaging(props: any) {
       const addedUser = adusers.filter((aduser: any) => aduser.id === userId);
       await setMembersService(context, chosenGroupId, [userId]);
       setMembers((prevMembers) => [...prevMembers, ...addedUser]);
-      setIsMemberAdded(true);
     } catch (error) {
       console.error("Error adding members:", error);
     } finally {
