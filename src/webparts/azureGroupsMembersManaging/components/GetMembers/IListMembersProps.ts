@@ -1,5 +1,15 @@
-interface IListMembersProps{
-    members:[];
-    removeUser:CallableFunction;
-    isGroupChosen:boolean;
-}
+
+
+interface IMember {
+    id: string;
+    displayName: string;
+    imageUrl: string;
+    jobTitle: string;
+  }
+
+  // Define the props interface for the RenderMembers component
+export interface IListMembersProps {
+    members: IMember[]; // Array of member objects
+    removeUser: (userId: string) => void; // Function to remove a user
+    isGroupChosen: boolean; // Flag indicating whether a group is chosen
+  }
