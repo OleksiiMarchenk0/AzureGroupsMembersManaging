@@ -1,3 +1,40 @@
-.groupContainer{
-    display: block;
+.listItem {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &.selected,
+  &:hover {
+    background-color: #0078d4; // Apply the background color for the selected tile'
+    .groupTitle{
+      color: #fff;
+    }
+  }
+
+  .groupTitle {
+    font-size: 14px; // Adjust the font size as needed
+    font-weight: bold; // Apply bold font weight if desired
+    text-align: center; // Center the text horizontally
+    margin: 0; // Remove any default margin
+    padding: 0; // Remove any default padding
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; // Określa maksymalną ilość wierszy
+  }
+
+}
+
+// ListItem.scss
+.container {
+  width: 100%;
+
+  margin: 0 auto;
 }
