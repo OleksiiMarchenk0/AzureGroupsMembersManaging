@@ -35,6 +35,22 @@
 // ListItem.scss
 .container {
   width: 100%;
-
   margin: 0 auto;
+}
+.searchTextField {
+  width: 100%;
+  //max-width: 300px; // Adjust the maximum width as needed
+  padding-bottom: 10px;
+
+}
+
+.searchTextField input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.searchTextField input:focus {
+  outline: none;
+  border-color: #0078d4; // Highlight color when focused
 }

@@ -1,20 +1,18 @@
 import * as React from 'react';
-//import { DetailsList, DetailsListLayoutMode, SelectionMode } from '@fluentui/react';
-//import { mergeStyles } from '@fluentui/react/lib/Styling';
-//import { List } from '@fluentui/react/lib/List';
 import { IGroup, IListGroupsProps } from './IListGroupsProps';
 import styles from './RenderGroups.module.scss';
-import { Stack, Text } from '@fluentui/react';
+import { Stack, Text, TextField } from '@fluentui/react';
 
 
 export default function RenderGroups(props: IListGroupsProps) {
 
   const [selectedGroupId, setSelectedGroupId] = React.useState<string | null>(null);
+  const [searchText, setSearchText] = React.useState<string>('');
   const { groups, getChosenGroupId } = props;
   const handleGroupClick = (groupId: string) => {
-    getChosenGroupId(groupId); // Notify parent component of the selected group ID
-    setSelectedGroupId(groupId); // Update the selected group ID in state
-    console.log('Selected Group ID:', groupId); // Log the selected group ID to the console
+    getChosenGroupId(groupId);
+    setSelectedGroupId(groupId);
+    console.log('Selected Group ID:', groupId);
   };
   const renderGroupItem = (group: IGroup, index: number) => {
     const isSelected = selectedGroupId === group.id;
@@ -28,11 +26,23 @@ export default function RenderGroups(props: IListGroupsProps) {
       </div>
     );
   };
+
+// Filter groups based on the search input
+const filteredGroups = groups.filter(group =>
+  group.displayName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
+);
+  
   return (
     <div className={styles.container}>
       <h2>Available groups</h2>
+      <TextField
+        className="searchTextField"
+        label="Search groups"
+        value={searchText}
+        onChange={(event, newValue) => setSearchText(newValue || '')}
+      />
       <Stack horizontal wrap tokens={{ childrenGap: 10 }}>
-        {groups.map(renderGroupItem)}
+        {filteredGroups.map(renderGroupItem)}
       </Stack>
     </div>
   );
