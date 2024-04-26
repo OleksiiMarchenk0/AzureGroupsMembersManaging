@@ -15,7 +15,7 @@ export default function RenderMembers(props: IListMembersProps) {
           <h2>Members of the group</h2>
           {members && members.length > 0 ? (
             members.map((member: any) => (
-              <div key={member.id} className={mergeStyles({ position: 'relative', display: 'inline-block' })}>
+              <div key={member.id} className={mergeStyles(styles.memberContainer)}>
                 <Persona
                   imageUrl={member.imageUrl} // Provide the URL of the user's image
                   text={member.displayName} // Display name of the user

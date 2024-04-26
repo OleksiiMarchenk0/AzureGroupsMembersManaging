@@ -11,3 +11,9 @@
   height: auto;
   line-height: inherit;
 }
+.memberContainer {
+  margin: 10px; /* Add margin bottom to create space between member items */
+  position: relative;
+   display: inline-block;
+   width: 30%;
+}
