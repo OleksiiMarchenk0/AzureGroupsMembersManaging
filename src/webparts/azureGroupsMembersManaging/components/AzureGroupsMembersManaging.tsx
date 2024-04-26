@@ -100,6 +100,29 @@ function AzureGroupsMembersManaging(props: any) {
     
   }, [isMemberAdded])
 
+  // Get AD Users
+  React.useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        let users = await getADUserService(context);
+        if (users) {
+           const memberIds: string[] = members.map(member => member.id);
+          users = users.filter((user: any) => memberIds.indexOf(user.id) === -1);
+          
+
+          setadusers(users);
+        } else {
+          console.error("Error: Invalid data structure");
+        }
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, [members]);
 
   // Remove user from group
   const removeUser = async (userId: string) => {
@@ -134,25 +157,7 @@ function AzureGroupsMembersManaging(props: any) {
   };
 
 
-  // Get AD Users
-  React.useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const users = await getADUserService(context);
-        if (users) {
-          setadusers(users);
-        } else {
-          console.error("Error: Invalid data structure");
-        }
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    fetchUsers();
-  }, [context]);
 
   return (
     <section>
