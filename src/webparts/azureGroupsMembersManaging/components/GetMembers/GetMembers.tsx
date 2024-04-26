@@ -1,16 +1,9 @@
 import * as React from "react";
-// import { useEffect } from "react";
-// import { getMembersService } from "../../services/getMembersService";
-//import { removeMemberService } from "../../services/removeMemberService";
 import RenderMembers from "./RenderMembers";
 
 function GetMembers(props: any) {
-  const {  isGroupChosen,members ,loading, removeUser} = props;
+  const { isGroupChosen, members, loading, removeUser } = props;
 
-
-
-
-  
   return (
     <div>
       {loading ? (
