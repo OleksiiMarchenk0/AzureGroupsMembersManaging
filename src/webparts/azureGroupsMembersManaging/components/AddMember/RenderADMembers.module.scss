@@ -1,0 +1,24 @@
+.userContainer {
+    margin-bottom: 10px;
+    margin: 10px; 
+    position: relative;
+     display: inline-block;
+     width: 30%;
+  }
+  
+  .addButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    color: #107c10;
+    border: none;
+    padding: 0;
+    min-width: auto;
+    height: auto;
+    line-height: inherit;
+  }
+  
+  .newUser {
+    margin-left: 10px;
+  }

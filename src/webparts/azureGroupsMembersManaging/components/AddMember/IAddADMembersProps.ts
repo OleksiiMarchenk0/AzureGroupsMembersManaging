@@ -1,4 +1,4 @@
-interface IAddADMembersProps{
+export interface IAddADMembersProps{
     users:[];
     addUsers:CallableFunction;
     isGroupChosen:boolean;

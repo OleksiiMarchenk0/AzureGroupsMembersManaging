@@ -19,15 +19,17 @@
   }
 
   .groupTitle {
-    font-size: 14px; // Adjust the font size as needed
-    font-weight: bold; // Apply bold font weight if desired
-    text-align: center; // Center the text horizontally
-    margin: 0; // Remove any default margin
-    padding: 0; // Remove any default padding
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    text-align: center;
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2; // Określa maksymalną ilość wierszy
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+
+
   }
 
 }
