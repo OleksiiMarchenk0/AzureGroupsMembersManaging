@@ -144,10 +144,6 @@ function AzureGroupsMembersManaging(props: any) {
     } finally {
     }
   };
-
-
-
-
   return (
     <section>
       <GetGroups
