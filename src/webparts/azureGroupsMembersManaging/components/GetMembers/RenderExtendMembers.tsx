@@ -32,7 +32,7 @@ export default function RenderExtendMembers(props: IListMembersProps) {
               {filteredMembers.map((member: any) => (
                 <div
                   key={member.id}
-                  className={mergeStyles(styles.memberContainer)}
+                  className={mergeStyles( styles.memberContainer,styles.memberContainer__extended)}
                 >
                   <Persona
                     imageUrl={member.imageUrl} 
@@ -42,7 +42,7 @@ export default function RenderExtendMembers(props: IListMembersProps) {
                   <DefaultButton
                     onClick={() => removeUser(member.id)} 
                     iconProps={{ iconName: "Cancel" }} 
-                    className={styles.cancelButton} 
+                    className={mergeStyles(styles.cancelButton, styles.cancelButton__extended)} 
                   />
                 </div>
               ))}

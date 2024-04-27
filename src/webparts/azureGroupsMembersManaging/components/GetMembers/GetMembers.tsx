@@ -1,5 +1,6 @@
 import * as React from "react";
 import RenderExtendMembers from "./RenderExtendMembers";
+import RenderSimpleMembers from "./RenderSimpleMembers";
 
 
 function GetMembers(props: any) {
@@ -22,7 +23,12 @@ function GetMembers(props: any) {
                 />
               </>
             ) : (
-              <div>Normal view members</div>
+              <RenderSimpleMembers
+              members={members}
+              removeUser={removeUser}
+              isGroupChosen={isGroupChosen}
+              chosenGroupDisplayName={chosenGroupDisplayName}
+            />
             )}
           </>
         </div>

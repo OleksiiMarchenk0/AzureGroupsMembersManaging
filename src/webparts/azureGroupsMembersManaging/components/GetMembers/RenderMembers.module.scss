@@ -1,7 +1,6 @@
 
 .cancelButton {
   position: absolute;
-  top: 0;
   right: 0;
   background-color: transparent;
   color: #a80000;
@@ -10,10 +9,18 @@
   min-width: auto;
   height: auto;
   line-height: inherit;
+  &__extended{
+    top: 0;
+  }
+  &__simple{
+    top: 12px;
+  }
 }
 .memberContainer {
   margin: 10px; /* Add margin bottom to create space between member items */
   position: relative;
-   display: inline-block;
-   width: 30%;
+   &__extended{
+    display: inline-block;
+    width: 30%;
+   }
 }
