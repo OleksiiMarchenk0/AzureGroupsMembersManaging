@@ -11,6 +11,14 @@ declare interface IAzureGroupsMembersManagingWebPartStrings {
   AppOfficeEnvironment: string;
   AppOutlookEnvironment: string;
   UnknownEnvironment: string;
+  PropertyPaneViewTitle: {
+    title: string;
+    options: {
+      simple: string;
+      extended:string;
+    }
+
+  }
 }
 
 declare module 'AzureGroupsMembersManagingWebPartStrings' {

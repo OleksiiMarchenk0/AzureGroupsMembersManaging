@@ -111,10 +111,10 @@ export default class AzureGroupsMembersManagingWebPart extends BaseClientSideWeb
               groupName: strings.BasicGroupName,
               groupFields: [
                 PropertyPaneDropdown('view', {
-                  label: "View",
+                  label: strings.PropertyPaneViewTitle.title,
                   options: [
-                    { key: 'Simple', text: 'Simple' },
-                    { key: 'Extended', text: 'Extended' }
+                    { key: 'Simple', text: strings.PropertyPaneViewTitle.options.simple },
+                    { key: 'Extended', text: strings.PropertyPaneViewTitle.options.extended }
                   ],
                   disabled: false
                 })
