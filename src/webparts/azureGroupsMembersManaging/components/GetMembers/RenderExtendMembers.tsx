@@ -5,10 +5,11 @@ import { Persona, DefaultButton } from "@fluentui/react";
 import { mergeStyles } from "@fluentui/react/lib/Styling";
 import styles from "./RenderMembers.module.scss"; // Import the SCSS file
 
-export default function RenderMembers(props: IListMembersProps) {
-  const { members, removeUser, isGroupChosen } = props;
+export default function RenderExtendMembers(props: IListMembersProps) {
+  const { members, removeUser, isGroupChosen,chosenGroupDisplayName } = props;
   const [searchText, setSearchText] = React.useState<string>("");
-
+  console.log(chosenGroupDisplayName);
+  
 
   // Filter members based on search text
   const filteredMembers = searchText
@@ -20,7 +21,7 @@ export default function RenderMembers(props: IListMembersProps) {
     <>
       {isGroupChosen && (
         <>
-          <h2>Members of the group</h2>
+          <h2>Members of the group {chosenGroupDisplayName}</h2>
           {members && members.length > 0 ? (
             <>
               <TextField

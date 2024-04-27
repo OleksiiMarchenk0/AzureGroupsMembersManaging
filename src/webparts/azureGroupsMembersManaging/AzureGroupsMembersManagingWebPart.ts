@@ -3,7 +3,7 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
   type IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneDropdown
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
@@ -13,7 +13,7 @@ import AzureGroupsMembersManaging from './components/AzureGroupsMembersManaging'
 import { IAzureGroupsMembersManagingProps } from './components/IAzureGroupsMembersManagingProps';
 
 export interface IAzureGroupsMembersManagingWebPartProps {
-  description: string;
+  view: string;
 }
 
 export default class AzureGroupsMembersManagingWebPart extends BaseClientSideWebPart<IAzureGroupsMembersManagingWebPartProps> {
@@ -25,11 +25,11 @@ export default class AzureGroupsMembersManagingWebPart extends BaseClientSideWeb
     const element: React.ReactElement<IAzureGroupsMembersManagingProps> = React.createElement(
       AzureGroupsMembersManaging,
       {
-        description: this.properties.description,
         isDarkTheme: this._isDarkTheme,
         environmentMessage: this._environmentMessage,
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
-        context:this.context
+        context:this.context,
+        view:this.properties.view
         
       }
     );
@@ -110,8 +110,13 @@ export default class AzureGroupsMembersManagingWebPart extends BaseClientSideWeb
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                PropertyPaneDropdown('view', {
+                  label: "View",
+                  options: [
+                    { key: 'Normal', text: 'Normal' },
+                    { key: 'Extended', text: 'Extended' }
+                  ],
+                  disabled: false
                 })
               ]
             }

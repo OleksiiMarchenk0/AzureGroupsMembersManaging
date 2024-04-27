@@ -7,20 +7,26 @@ import { Stack, Text, TextField } from '@fluentui/react';
 export default function RenderGroups(props: IListGroupsProps) {
 
   const [selectedGroupId, setSelectedGroupId] = React.useState<string | null>(null);
+  const [selectedGroupDisplayName, setSselectedGroupDisplayName] = React.useState<string | null>(null);
   const [searchText, setSearchText] = React.useState<string>('');
-  const { groups, getChosenGroupId } = props;
-  const handleGroupClick = (groupId: string) => {
-    getChosenGroupId(groupId);
+  const { groups, getChosenGroupIdAndName } = props;
+  console.log(selectedGroupDisplayName);
+  
+  const handleGroupClick = (groupId: string, displayName:string) => {
+    getChosenGroupIdAndName(groupId,displayName);
     setSelectedGroupId(groupId);
+    setSselectedGroupDisplayName(displayName);
     console.log('Selected Group ID:', groupId);
   };
+
+
   const renderGroupItem = (group: IGroup, index: number) => {
     const isSelected = selectedGroupId === group.id;
     return (
       <div
         key={group.id}
         className={`${styles.listItem} ${isSelected ? styles.selected : ''}`}
-        onClick={() => handleGroupClick(group.id)}
+        onClick={() => handleGroupClick(group.id, group.displayName)}
       >
         <Text as="div" className={styles.groupTitle}>{group.displayName}</Text>
       </div>

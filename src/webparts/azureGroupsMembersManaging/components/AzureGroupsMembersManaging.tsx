@@ -17,8 +17,9 @@ import { GetOwnedGroups } from "../helper/GetOwnedGroups";
 
 
 function AzureGroupsMembersManaging(props: any) {
-  const { context } = props;
+  const { context, view } = props;
   const [chosenGroupId, setChosenGroupId] = React.useState<string>("");
+  const [chosenGroupDisplayName, setChosenGroupDisplayName] = React.useState<string>("");
   const [isGroupChosen, setIsGroupChosen] = React.useState<boolean>(false);
 
   const [members, setMembers] = React.useState<any[]>([]);
@@ -27,9 +28,10 @@ function AzureGroupsMembersManaging(props: any) {
   const [filteredGroups, setFilteredGroups] = React.useState<[]>([]);
   const [adusers, setadusers] = React.useState<[]>([]);
 
-  const getChosenGroupId = (id: string) => {
+  const getChosenGroupIdAndName = (id: string,displayName:string) => {
     setChosenGroupId(id);
     setIsGroupChosen(true);
+    setChosenGroupDisplayName(displayName)
   };
 
   //Getting all groups
@@ -149,15 +151,19 @@ function AzureGroupsMembersManaging(props: any) {
       <GetGroups
         context={context}
         groups={groups}
-        getChosenGroupId={getChosenGroupId}
+        getChosenGroupIdAndName={getChosenGroupIdAndName}
         loading={loading}
         filteredGroups={filteredGroups}
+        view={view}
       />
       <GetMembers
         context={props.context}
         isGroupChosen={isGroupChosen}
         members={members}
         removeUser={removeUser}
+        view={view}
+        chosenGroupDisplayName={chosenGroupDisplayName}
+    
       />
       <AddMember
         context={context}
@@ -166,6 +172,8 @@ function AzureGroupsMembersManaging(props: any) {
         addUsers={addUsers}
         adusers={adusers}
         loading={loading}
+        view={view}
+        chosenGroupDisplayName={chosenGroupDisplayName}
       />
     </section>
   );

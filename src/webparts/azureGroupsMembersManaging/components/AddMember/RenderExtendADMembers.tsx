@@ -4,8 +4,8 @@ import { IAddADMembersProps } from './IAddADMembersProps';
 import { mergeStyles } from '@fluentui/react/lib/Styling';
 import styles from './RenderADMembers.module.scss'; // Import the SCSS file
 
-export default function RenderADMembers(props: IAddADMembersProps) {
-  const { users, addUsers, isGroupChosen } = props;
+export default function RenderExtendADMembers(props: IAddADMembersProps) {
+  const { users, addUsers, isGroupChosen , chosenGroupDisplayName} = props;
   const [searchText, setSearchText] = React.useState<string>('');
 
   // Filter users based on search text
@@ -17,7 +17,7 @@ export default function RenderADMembers(props: IAddADMembersProps) {
     <>
       {isGroupChosen && (
         <>
-          <h2> Add members to group</h2>
+          <h2> Add members to group {chosenGroupDisplayName}</h2>
           <TextField
             label="Search users"
             value={searchText}

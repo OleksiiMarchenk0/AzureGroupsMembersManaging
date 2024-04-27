@@ -1,7 +1,7 @@
 // IListGroupsProps interface
 export interface IListGroupsProps {
     groups: IGroup[];
-    getChosenGroupId: (id: string) => void;
+    getChosenGroupIdAndName: (id: string,displayname:string) => void;
   }
   
   // IGroup interface

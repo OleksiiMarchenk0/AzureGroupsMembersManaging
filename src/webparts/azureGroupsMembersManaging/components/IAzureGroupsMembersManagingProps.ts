@@ -1,7 +1,7 @@
 import { WebPartContext, } from "@microsoft/sp-webpart-base";
 
 export interface IAzureGroupsMembersManagingProps {
-  description: string;
+  view: string;
   isDarkTheme: boolean;
   environmentMessage: string;
   hasTeamsContext: boolean;
