@@ -1,9 +1,10 @@
 import * as React from "react";
 import RenderExtendMembers from "./RenderExtendMembers";
 import RenderSimpleMembers from "./RenderSimpleMembers";
+import { IListMembersProps } from "./IListMembersProps";
 
 
-function GetMembers(props: any) {
+function GetMembers(props: IListMembersProps) {
   const { isGroupChosen, members, loading, removeUser,view, chosenGroupDisplayName } = props;
 
   return (

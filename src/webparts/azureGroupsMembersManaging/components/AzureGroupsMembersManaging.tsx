@@ -162,6 +162,7 @@ function AzureGroupsMembersManaging(props: any) {
         removeUser={removeUser}
         view={view}
         chosenGroupDisplayName={chosenGroupDisplayName}
+        loading={loading}
     
       />
       <AddMember

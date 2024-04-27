@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Text, TextField } from "@fluentui/react";
-import { IListMembersProps } from "./IListMembersProps";
+import {  IListMembersSimplestProps } from "./IListMembersProps";
 import { Persona, DefaultButton } from "@fluentui/react";
 import { mergeStyles } from "@fluentui/react/lib/Styling";
 import styles from "./RenderMembers.module.scss"; // Import the SCSS file
 import { IMember } from "./IMember";
 
-export default function RenderExtendMembers(props: IListMembersProps) {
+export default function RenderExtendMembers(props: IListMembersSimplestProps) {
   const { members, removeUser, isGroupChosen,chosenGroupDisplayName } = props;
   const [searchText, setSearchText] = React.useState<string>("");
   console.log(chosenGroupDisplayName);
