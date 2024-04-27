@@ -2,6 +2,7 @@ import * as React from 'react';
 import { IGroup, IListGroupsProps } from './IListGroupsProps';
 import styles from './RenderGroups.module.scss';
 import { Stack, Text, TextField } from '@fluentui/react';
+import * as strings from 'AzureGroupsMembersManagingWebPartStrings';
 
 
 export default function RenderGroups(props: IListGroupsProps) {
@@ -40,10 +41,10 @@ const filteredGroups = groups.filter(group =>
   
   return (
     <div className={styles.container}>
-      <h2>Available groups</h2>
+      <h2>{strings.Group.availableLabel}</h2>
       <TextField
         className="searchTextField"
-        label="Search groups"
+        label={strings.Group.searchLabel}
         value={searchText}
         onChange={(event, newValue) => setSearchText(newValue || '')}
       />

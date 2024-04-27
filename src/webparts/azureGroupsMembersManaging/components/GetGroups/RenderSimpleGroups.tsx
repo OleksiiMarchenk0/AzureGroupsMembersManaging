@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IGroup, IListGroupsProps } from './IListGroupsProps';
 import { Dropdown, IDropdownOption } from '@fluentui/react';
-
+import * as strings from 'AzureGroupsMembersManagingWebPartStrings';
 export default function RenderGroups(props: IListGroupsProps) {
   const { groups, getChosenGroupIdAndName } = props;
 
@@ -21,9 +21,9 @@ export default function RenderGroups(props: IListGroupsProps) {
 
   return (
     <div>
-      <h2>Select a group</h2>
+      <h2>{strings.Group.label}</h2>
       <Dropdown
-        placeholder="Select a group"
+        placeholder={strings.Group.label}
         options={dropdownOptions}
         onChange={handleGroupChange}
         styles={{ dropdown: { width: 300 } }} // Adjust width as needed

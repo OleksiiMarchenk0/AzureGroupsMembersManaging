@@ -4,6 +4,7 @@ import { mergeStyles } from '@fluentui/react/lib/Styling';
 import styles from './RenderADMembers.module.scss'; // Import the SCSS file
 import { IMember } from "../GetMembers/IMember";
 import { IAddADMembersSimpleProps } from "./IAddADMembersProps";
+import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 export default function RenderExtendADMembers(props: IAddADMembersSimpleProps) {
   const { adusers, addUsers, isGroupChosen , chosenGroupDisplayName} = props;
@@ -17,7 +18,7 @@ export default function RenderExtendADMembers(props: IAddADMembersSimpleProps) {
     <>
       {isGroupChosen && (
         <>
-          <h2> Add members to group {chosenGroupDisplayName}</h2>
+          <h2> {strings.Members.addToGroupLabel} {chosenGroupDisplayName}</h2>
           <TextField
             label="Search users"
             value={searchText}

@@ -11,6 +11,7 @@ import {
 } from "@fluentui/react";
 import {  IAddADMembersSimpleProps } from "./IAddADMembersProps";
 import { IMember } from "../GetMembers/IMember";
+import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
   const { adusers, addUsers, isGroupChosen, chosenGroupDisplayName } = props;
@@ -57,10 +58,10 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
     <>
       {isGroupChosen && (
         <>
-          <h2>Add members to group {chosenGroupDisplayName}</h2>
+          <h2>{strings.Members.addToGroupLabel} {chosenGroupDisplayName}</h2>
           <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 10 }}>
             <Dropdown
-              placeholder="Select a user from Entra ID"
+              placeholder={strings.SelectAUserFromEntraIDLabel}
               options={adusers.map((user: IMember) => ({
                 key: user.id,
                 text: user.displayName,
@@ -70,9 +71,9 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
               onChange={handleUserChange}
               styles={{ dropdown: { width: 300 , marginTop: '27px' } }} // Adjust width as needed
             />
-            <Text>or</Text>
+            <Text>{strings.OrLabel}</Text>
             <TextField
-              label="Search users in Entra ID"
+              label={strings.SearchUsersInEntraIDLabel}
               value={searchText}
               onChange={handleSearchInputChange}
               styles={{ fieldGroup: { width: 300 } }} // Adjust width as needed

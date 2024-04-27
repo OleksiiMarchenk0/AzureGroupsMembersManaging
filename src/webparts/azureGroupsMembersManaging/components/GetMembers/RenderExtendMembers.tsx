@@ -5,6 +5,8 @@ import { Persona, DefaultButton } from "@fluentui/react";
 import { mergeStyles } from "@fluentui/react/lib/Styling";
 import styles from "./RenderMembers.module.scss"; // Import the SCSS file
 import { IMember } from "./IMember";
+import * as strings from 'AzureGroupsMembersManagingWebPartStrings';
+
 
 export default function RenderExtendMembers(props: IListMembersSimplestProps) {
   const { members, removeUser, isGroupChosen,chosenGroupDisplayName } = props;
@@ -26,7 +28,7 @@ export default function RenderExtendMembers(props: IListMembersSimplestProps) {
           {members && members.length > 0 ? (
             <>
               <TextField
-                label="Search members"
+                label={strings.Members.searchLabel}
                 value={searchText}
                 onChange={(event, newValue) => setSearchText(newValue || "")}
               />

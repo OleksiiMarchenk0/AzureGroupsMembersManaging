@@ -6,7 +6,7 @@ import { mergeStyles } from "@fluentui/react/lib/Styling";
 import styles from "./RenderMembers.module.scss";
 import { IMember } from "./IMember";
 import { IListMembersSimplestProps } from "./IListMembersProps";
-
+import * as strings from 'AzureGroupsMembersManagingWebPartStrings';
 export default function RenderSimpleMembers(props: IListMembersSimplestProps) {
   const { members, removeUser, isGroupChosen, chosenGroupDisplayName } = props;
   const [searchText, setSearchText] = React.useState<string>("");
@@ -20,11 +20,11 @@ export default function RenderSimpleMembers(props: IListMembersSimplestProps) {
     <>
       {isGroupChosen && (
         <>
-          <h2>Members of the group {chosenGroupDisplayName}</h2>
+          <h2>{strings.Members.label} {chosenGroupDisplayName}</h2>
           {members && members.length > 0 ? (
             <>
            	   <TextField
-            label="Search members"
+            label={strings.Members.searchLabel}
             value={searchText}
             onChange={(event, newValue) => setSearchText(newValue || "")}
           />

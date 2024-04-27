@@ -11,6 +11,7 @@ declare interface IAzureGroupsMembersManagingWebPartStrings {
   AppOfficeEnvironment: string;
   AppOutlookEnvironment: string;
   UnknownEnvironment: string;
+  OrLabel:string;
   PropertyPaneViewTitle: {
     title: string;
     options: {
@@ -18,7 +19,27 @@ declare interface IAzureGroupsMembersManagingWebPartStrings {
       extended:string;
     }
 
+  },
+  Group:{
+    label:string;
+    searchLabel:string;
+    availableLabel:string;
   }
+  Members:{
+    label:string;
+    searchLabel: string;
+    addToGroupLabel:string;
+    selectFromEntraIDLael:string;
+    searchInEntraIDLabel:string;
+    addUserBtnLabel:string;
+
+  }
+
+
+ // AddMemberToGroupLabel:string;
+  SelectAUserFromEntraIDLabel:string;
+  SearchUsersInEntraIDLabel:string;
+  AddUserButtonLabel:string;
 }
 
 declare module 'AzureGroupsMembersManagingWebPartStrings' {
