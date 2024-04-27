@@ -73,7 +73,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
               onChange={handleUserChange}
               styles={{ dropdown: { width: 300, marginTop: "27px" } }} // Adjust width as needed
             />
-            <Text>{strings.OrLabel}</Text>
+            <Text style={{ marginTop: '20px' }}>{strings.OrLabel}</Text>
             <TextField
               label={strings.Members.searchInEntraIDLabel}
               value={searchText}

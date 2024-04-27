@@ -37,7 +37,7 @@ console.log(`Choosed ${view }view`);
 
 
   return (
-    <div>
+    <div style={{ marginTop: '10px', marginBottom: '10px' }}>
       {loading ? (
          <Spinner size={SpinnerSize.large} label={strings.Group.loadingProgressLabel} />
       ) : (
