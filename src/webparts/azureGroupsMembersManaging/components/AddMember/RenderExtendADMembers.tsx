@@ -1,17 +1,17 @@
 import * as React from "react";
 import { Text, TextField, Persona, Stack, DefaultButton } from "@fluentui/react";
-import { IAddADMembersProps } from './IAddADMembersProps';
 import { mergeStyles } from '@fluentui/react/lib/Styling';
 import styles from './RenderADMembers.module.scss'; // Import the SCSS file
 import { IMember } from "../GetMembers/IMember";
+import { IAddADMembersSimpleProps } from "./IAddADMembersProps";
 
-export default function RenderExtendADMembers(props: IAddADMembersProps) {
-  const { users, addUsers, isGroupChosen , chosenGroupDisplayName} = props;
+export default function RenderExtendADMembers(props: IAddADMembersSimpleProps) {
+  const { adusers, addUsers, isGroupChosen , chosenGroupDisplayName} = props;
   const [searchText, setSearchText] = React.useState<string>('');
 
   const filteredUsers = searchText
-  ? users.filter((user: IMember) => user.displayName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1)
-  : users;
+  ? adusers.filter((user: IMember) => user.displayName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1)
+  : adusers;
 
   return (
     <>

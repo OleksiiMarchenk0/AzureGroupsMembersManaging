@@ -1,11 +1,12 @@
 import * as React from "react";
 import RenderExtendADMembers from "./RenderExtendADMembers";
 import RenderSimpleADMembers from "./RenderSimpleADMembers";
+import { IAddADMembersProps } from "./IAddADMembersProps";
 
 
 
-export default function AddMember(props: any) {
-  const {  isGroupChosen, addUsers,loading,adusers, chosenGroupDisplayName , view} = props;
+export default function AddMember(props: IAddADMembersProps) {
+  const {  isGroupChosen, addUsers,loading,adusers, chosenGroupDisplayName , view, context, groupId} = props;
   return (
     <div>
       {loading ? (
@@ -13,9 +14,9 @@ export default function AddMember(props: any) {
       ) : (
         <>
         {view === "Extended" ? (
-         <RenderExtendADMembers users={adusers} addUsers={addUsers}  isGroupChosen ={isGroupChosen} chosenGroupDisplayName={chosenGroupDisplayName}/>
+         <RenderExtendADMembers adusers={adusers} addUsers={addUsers}  isGroupChosen ={isGroupChosen} chosenGroupDisplayName={chosenGroupDisplayName} context={context} groupId={groupId}/>
         ) : (
-       <RenderSimpleADMembers users={adusers} addUsers={addUsers}  isGroupChosen ={isGroupChosen} chosenGroupDisplayName={chosenGroupDisplayName} />
+       <RenderSimpleADMembers adusers={adusers} addUsers={addUsers}  isGroupChosen ={isGroupChosen} chosenGroupDisplayName={chosenGroupDisplayName} context={context}  groupId={groupId}/>
         )}
       </>
       )}
