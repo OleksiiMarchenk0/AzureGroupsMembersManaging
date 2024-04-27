@@ -18,7 +18,7 @@
     "description": { "default": "AzureGroupsMembersManaging description" },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "view": "Normal"
+      "view": "Simple"
     }
   }]
 }
