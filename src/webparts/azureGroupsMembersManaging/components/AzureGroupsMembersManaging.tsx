@@ -14,6 +14,7 @@ import { getADUserService } from "../services/getADUserService";
 
 
 import { GetOwnedGroups } from "../helper/GetOwnedGroups";
+import { IMember } from "./GetMembers/IMember";
 
 
 function AzureGroupsMembersManaging(props: any) {
@@ -22,7 +23,7 @@ function AzureGroupsMembersManaging(props: any) {
   const [chosenGroupDisplayName, setChosenGroupDisplayName] = React.useState<string>("");
   const [isGroupChosen, setIsGroupChosen] = React.useState<boolean>(false);
 
-  const [members, setMembers] = React.useState<any[]>([]);
+  const [members, setMembers] = React.useState<IMember[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [groups, setGroups] = React.useState<[]>([]);
   const [filteredGroups, setFilteredGroups] = React.useState<[]>([]);
@@ -101,7 +102,7 @@ function AzureGroupsMembersManaging(props: any) {
         let users = await getADUserService(context);
         if (users) {
            const actualMemberIds: string[] = members.map(member => member.id);
-          users = users.filter((user: any) => actualMemberIds.indexOf(user.id) === -1);
+          users = users.filter((user: IMember) => actualMemberIds.indexOf(user.id) === -1);
           setadusers(users);
         } else {
           console.error("Error: Invalid data structure");
@@ -124,8 +125,8 @@ function AzureGroupsMembersManaging(props: any) {
         chosenGroupId,
         userId
       );
-      setMembers((members: any) =>
-        members.filter((member: any) => member.id !== userId)
+      setMembers((members: IMember[]) =>
+        members.filter((member: IMember) => member.id !== userId)
       );
     } catch (error) {
       console.error("Error fetching members:", error);
@@ -136,7 +137,7 @@ function AzureGroupsMembersManaging(props: any) {
   //Add user to group
   const addUsers = async (userId: string) => {
     try {
-      const addedUser = adusers.filter((aduser: any) => aduser.id === userId);
+      const addedUser = adusers.filter((aduser: IMember) => aduser.id === userId);
       await setMembersService(context, chosenGroupId, [userId]);
       setMembers((prevMembers) => [...prevMembers, ...addedUser]);
     } catch (error) {

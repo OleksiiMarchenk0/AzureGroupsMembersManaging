@@ -4,6 +4,7 @@ import { IListMembersProps } from "./IListMembersProps";
 import { Persona, DefaultButton } from "@fluentui/react";
 import { mergeStyles } from "@fluentui/react/lib/Styling";
 import styles from "./RenderMembers.module.scss"; // Import the SCSS file
+import { IMember } from "./IMember";
 
 export default function RenderExtendMembers(props: IListMembersProps) {
   const { members, removeUser, isGroupChosen,chosenGroupDisplayName } = props;
@@ -29,7 +30,7 @@ export default function RenderExtendMembers(props: IListMembersProps) {
                 value={searchText}
                 onChange={(event, newValue) => setSearchText(newValue || "")}
               />
-              {filteredMembers.map((member: any) => (
+              {filteredMembers.map((member: IMember) => (
                 <div
                   key={member.id}
                   className={mergeStyles( styles.memberContainer,styles.memberContainer__extended)}

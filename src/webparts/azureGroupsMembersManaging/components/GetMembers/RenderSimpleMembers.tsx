@@ -4,6 +4,7 @@ import { IListMembersProps } from "./IListMembersProps";
 import { Persona, PersonaSize } from "@fluentui/react/lib/Persona";
 import { mergeStyles } from "@fluentui/react/lib/Styling";
 import styles from "./RenderMembers.module.scss";
+import { IMember } from "./IMember";
 
 export default function RenderSimpleMembers(props: IListMembersProps) {
   const { members, removeUser, isGroupChosen, chosenGroupDisplayName } = props;
@@ -26,7 +27,7 @@ export default function RenderSimpleMembers(props: IListMembersProps) {
             value={searchText}
             onChange={(event, newValue) => setSearchText(newValue || "")}
           />
-           {filteredMembers.map((member: any) => (
+           {filteredMembers.map((member: IMember) => (
             <div key={member.id} className={mergeStyles(styles.memberContainer)}>
               <Persona
                 imageUrl={member.imageUrl}

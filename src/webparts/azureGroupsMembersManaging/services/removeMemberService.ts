@@ -12,7 +12,7 @@ export const removeMemberService = (context: any, groupId:string, userId:string)
                 .version('v1.0')
                 .delete();
         })
-        .then((response: any) => {
+        .then((response: Response) => {
             return response;
         });
 };

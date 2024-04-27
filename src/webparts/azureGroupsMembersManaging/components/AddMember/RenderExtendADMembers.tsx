@@ -3,15 +3,15 @@ import { Text, TextField, Persona, Stack, DefaultButton } from "@fluentui/react"
 import { IAddADMembersProps } from './IAddADMembersProps';
 import { mergeStyles } from '@fluentui/react/lib/Styling';
 import styles from './RenderADMembers.module.scss'; // Import the SCSS file
+import { IMember } from "../GetMembers/IMember";
 
 export default function RenderExtendADMembers(props: IAddADMembersProps) {
   const { users, addUsers, isGroupChosen , chosenGroupDisplayName} = props;
   const [searchText, setSearchText] = React.useState<string>('');
 
-  // Filter users based on search text
   const filteredUsers = searchText
-    ? users.filter((user:any) => user.displayName.toLowerCase().includes(searchText.toLowerCase()))
-    : users;
+  ? users.filter((user: IMember) => user.displayName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1)
+  : users;
 
   return (
     <>
@@ -24,7 +24,7 @@ export default function RenderExtendADMembers(props: IAddADMembersProps) {
             onChange={(event, newValue) => setSearchText(newValue || '')}
           />
           {filteredUsers && filteredUsers.length > 0 ? (
-            filteredUsers.map((user: any) => (
+            filteredUsers.map((user: IMember) => (
               <Stack key={user.id} horizontal verticalAlign="center" className={mergeStyles(styles.userContainer, user.isNew && styles.newUser)}>
                 <Persona
                   imageUrl={user.imageUrl} // Provide the URL of the user's image

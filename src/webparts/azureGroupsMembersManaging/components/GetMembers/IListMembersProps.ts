@@ -1,11 +1,7 @@
+import { IMember } from "./IMember";
 
 
-interface IMember {
-    id: string;
-    displayName: string;
-    imageUrl: string;
-    jobTitle: string;
-  }
+
 
   // Define the props interface for the RenderMembers component
 export interface IListMembersProps {

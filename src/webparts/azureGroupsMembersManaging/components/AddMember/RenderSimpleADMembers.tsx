@@ -10,12 +10,13 @@ import {
   Stack,
 } from "@fluentui/react";
 import { IAddADMembersProps } from "./IAddADMembersProps";
+import { IMember } from "../GetMembers/IMember";
 
 export default function RenderSimpleADMembers(props: IAddADMembersProps) {
   const { users, addUsers, isGroupChosen, chosenGroupDisplayName } = props;
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [searchText, setSearchText] = useState<string>("");
-  const [suggestedUsers, setSuggestedUsers] = useState<any[]>([]);
+  const [suggestedUsers, setSuggestedUsers] = useState<IMember[]>([]);
 
   const handleUserChange = (
     event: React.FormEvent<HTMLDivElement>,
@@ -30,8 +31,9 @@ export default function RenderSimpleADMembers(props: IAddADMembersProps) {
 
   // Update suggested users based on search text
   const updateSuggestedUsers = (text: string) => {
-    const filtered = users.filter((user: any) =>
-      user.displayName.toLowerCase().includes(text.toLowerCase())
+    const filtered = users.filter((user: IMember) =>
+    user.displayName.toLowerCase().indexOf(text.toLowerCase()) !== -1
+
     );
     setSuggestedUsers(filtered);
   };
@@ -59,7 +61,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersProps) {
           <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 10 }}>
             <Dropdown
               placeholder="Select a user from Entra ID"
-              options={users.map((user: any) => ({
+              options={users.map((user: IMember) => ({
                 key: user.id,
                 text: user.displayName,
                 
