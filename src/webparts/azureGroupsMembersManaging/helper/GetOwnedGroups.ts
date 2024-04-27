@@ -35,8 +35,8 @@ export async function GetOwnedGroups(context: WebPartContext): Promise<any> {
     );
 
     groupsData = groupsData.filter((group: any) => {
-      let idsToheck = myGroupsIds[0].groupId;
-      return idsToheck === group.id;
+      let groupIds = myGroupsIds.map(owner => owner.groupId);
+      return groupIds.indexOf(group.id) !== -1;
     });
 
     return { groupsData };
