@@ -7,7 +7,7 @@ export const setMembersService = (context: any, groupId:string, userIds:string[]
         'members@odata.bind': userIds.map(userId => `https://graph.microsoft.com/v1.0/directoryObjects/${userId}`)
     };
     
-console.log(newMembers);
+
 
 
     return context.msGraphClientFactory

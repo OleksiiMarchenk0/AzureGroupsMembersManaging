@@ -15,8 +15,6 @@ export async function RecognizeIsUserGlobalAdminHelper(
 
     const admins = globalAdmins[0].members;
 
-    console.log(me);
-    console.log(admins);
 
     const isAdmin = admins.some((admin: any) => admin.id === me.id);
 
