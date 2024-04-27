@@ -73,7 +73,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
             />
             <Text>{strings.OrLabel}</Text>
             <TextField
-              label={strings.SearchUsersInEntraIDLabel}
+              label={strings.Members.searchInEntraIDLabel}
               value={searchText}
               onChange={handleSearchInputChange}
               styles={{ fieldGroup: { width: 300 } }} // Adjust width as needed

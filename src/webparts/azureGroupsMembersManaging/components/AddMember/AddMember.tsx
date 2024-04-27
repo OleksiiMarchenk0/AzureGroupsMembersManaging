@@ -2,6 +2,8 @@ import * as React from "react";
 import RenderExtendADMembers from "./RenderExtendADMembers";
 import RenderSimpleADMembers from "./RenderSimpleADMembers";
 import { IAddADMembersProps } from "./IAddADMembersProps";
+import { Spinner, SpinnerSize } from '@fluentui/react/lib/Spinner';
+import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 
 
@@ -10,7 +12,8 @@ export default function AddMember(props: IAddADMembersProps) {
   return (
     <div>
       {loading ? (
-        <div>Loading all AAD users...</div>
+        <Spinner size={SpinnerSize.large} label={strings.Members.loadingAADUsersProgressLabel} />
+   
       ) : (
         <>
         {view === "Extended" ? (

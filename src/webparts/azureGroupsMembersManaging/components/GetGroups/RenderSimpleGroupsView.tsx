@@ -1,6 +1,8 @@
 import * as React from "react";
 import RenderSimpleGroups from "./RenderSimpleGroups";
 import { IGetGroupRenderProps } from "./IGroupProps";
+import { Spinner, SpinnerSize } from "@fluentui/react";
+import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 
 export default function RenderSimpleGroupsView(props: IGetGroupRenderProps) {
@@ -10,7 +12,7 @@ export default function RenderSimpleGroupsView(props: IGetGroupRenderProps) {
     <div>
       <>
         {isAdmin === null ? (
-          <p>Loading...</p>
+         <Spinner size={SpinnerSize.large} label={strings.Members.loadingPermissionsProgressLabel} />
         ) : isAdmin ? (
           <>
             {" "}

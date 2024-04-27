@@ -23,7 +23,8 @@ declare interface IAzureGroupsMembersManagingWebPartStrings {
   Group:{
     label:string;
     searchLabel:string;
-    availableLabel:string;
+   availableLabel:string;
+    loadingProgressLabel:string;
   }
   Members:{
     label:string;
@@ -32,6 +33,8 @@ declare interface IAzureGroupsMembersManagingWebPartStrings {
     selectFromEntraIDLabel:string;
     searchInEntraIDLabel:string;
     addUserBtnLabel:string;
+    loadingAADUsersProgressLabel:string;
+    loadingPermissionsProgressLabel:string;
 
   }
 

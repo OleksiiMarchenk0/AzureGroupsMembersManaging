@@ -2,6 +2,8 @@ import * as React from "react";
 import RenderExtendMembers from "./RenderExtendMembers";
 import RenderSimpleMembers from "./RenderSimpleMembers";
 import { IListMembersProps } from "./IListMembersProps";
+import { Spinner, SpinnerSize } from "@fluentui/react";
+import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 
 function GetMembers(props: IListMembersProps) {
@@ -10,7 +12,7 @@ function GetMembers(props: IListMembersProps) {
   return (
     <div>
       {loading ? (
-        <div>Loading...</div>
+         <Spinner size={SpinnerSize.large} label={strings.Members.loadingPermissionsProgressLabel} />
       ) : (
         <div>
           <>

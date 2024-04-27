@@ -4,6 +4,8 @@ import { RecognizeIsUserGlobalAdminHelper } from "../../helper/RecognizeIsUserGl
 import RenderExtendGroupsView from "./RenderExtendGroupsView";
 import RenderSimpleGroupsView from "./RenderSimpleGroupsView";
 import {  IGetGroupSimpleProps } from "./IGroupProps";
+import { Spinner, SpinnerSize } from "@fluentui/react";
+import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 
 export default function GetGroups(props: IGetGroupSimpleProps) {
@@ -37,7 +39,7 @@ console.log(`Choosed ${view }view`);
   return (
     <div>
       {loading ? (
-        <div>Loading groups...</div>
+         <Spinner size={SpinnerSize.large} label={strings.Group.loadingProgressLabel} />
       ) : (
         <div>
     <>

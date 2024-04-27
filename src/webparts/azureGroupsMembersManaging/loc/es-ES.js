@@ -28,7 +28,11 @@ define([], function () {
     Group: {
       label: "Selecciona un grupo",
       searchLabel: "Buscar grupos",
-      availableLabel:"Grupos disponibles"
+      availableLabel:"Grupos disponibles",
+      loadingProgressLabel: "Cargando grupos"
+
+  
+
     },
     Members: {
       label: "Miembros del grupo",
@@ -37,6 +41,9 @@ define([], function () {
       selectFromEntraIDLabel: "Selecciona un usuario de Entra ID",
       searchInEntraIDLabel: "Buscar usuarios en Entra ID",
       addUserBtnLabel: "Agregar un usuario",
+      loadingAADUsersProgressLabel: "Cargando todos los usuarios de AAD",
+      loadingPermissionsProgressLabel: "Cargando tus permisos"
+
     },
   };
 });

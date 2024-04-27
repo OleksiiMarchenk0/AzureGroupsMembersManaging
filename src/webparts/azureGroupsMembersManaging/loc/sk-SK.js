@@ -28,7 +28,11 @@ define([], function () {
       Group: {
         label: "Vyberte skupinu",
         searchLabel: "Vyhľadať skupiny",
-        availableLabel:"Dostupné skupiny"
+        availableLabel:"Dostupné skupiny",
+        loadingProgressLabel: "Načítavanie skupín"
+
+        
+
       },
       Members: {
         label: "Členovia skupiny",
@@ -37,6 +41,9 @@ define([], function () {
         selectFromEntraIDLabel: "Vyberte používateľa z Entra ID",
         searchInEntraIDLabel: "Vyhľadať používateľov v Entra ID",
         addUserBtnLabel: "Pridať používateľa",
+        loadingAADUsersProgressLabel: "Načítavanie všetkých používateľov AAD",
+        loadingPermissionsProgressLabel: "Načítavanie vašich oprávnení"
+
       },
     };
   });

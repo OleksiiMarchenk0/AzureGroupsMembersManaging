@@ -28,15 +28,20 @@ define([], function () {
     Group: {
       label: "Select a group",
       searchLabel: "Search groups",
-      availableLabel:"Available groups"
+      availableLabel:"Available groups",
+      loadingProgressLabel:"Loading groups"
+    
+
     },
     Members: {
       label: "Members of the group",
       serchLabel: "Search members",
       addToGroupLabel: "Add members to group",
       selectFromEntraIDLabel: "Select a user from Entra ID",
+      loadingAADUsersProgressLabel:"Loading all AAD users",
       searchInEntraIDLabel: "Search users in Entra ID",
       addUserBtnLabel: "Add a user",
+      loadingPermissionsProgressLabel:"Loading your permissions"
     },
   };
 });
