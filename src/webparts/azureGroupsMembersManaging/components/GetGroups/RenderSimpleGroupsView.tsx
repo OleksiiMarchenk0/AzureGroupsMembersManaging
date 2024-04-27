@@ -7,6 +7,7 @@ import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 export default function RenderSimpleGroupsView(props: IGetGroupRenderProps) {
   const { isAdmin, groups, filteredGroups, getChosenGroupIdAndName } = props;
+  console.log(filteredGroups);
   
   return (
     <div>
