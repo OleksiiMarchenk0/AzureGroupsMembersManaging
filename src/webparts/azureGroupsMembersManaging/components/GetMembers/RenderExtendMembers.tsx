@@ -24,7 +24,7 @@ export default function RenderExtendMembers(props: IListMembersSimplestProps) {
     <>
       {isGroupChosen && (
         <>
-          <h2>Members of the group {chosenGroupDisplayName}</h2>
+          <h2>{strings.Members.label}{chosenGroupDisplayName}</h2>
           {members && members.length > 0 ? (
             <>
               <TextField

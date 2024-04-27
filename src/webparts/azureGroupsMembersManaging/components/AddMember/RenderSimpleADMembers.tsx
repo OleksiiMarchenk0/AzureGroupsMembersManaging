@@ -93,7 +93,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
           <DefaultButton
             disabled={!selectedUserId}
             onClick={() => addUsers(selectedUserId)}
-            text="Add User"
+            text={strings.Members.addUserBtnLabel}
             styles={{ root: {marginTop: '15px'} }} // Make the persona clickable
           />
         </>

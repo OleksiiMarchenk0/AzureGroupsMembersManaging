@@ -34,7 +34,7 @@ define([], function () {
       label: "Members of the group",
       serchLabel: "Search members",
       addToGroupLabel: "Add members to group",
-      selectFromEntraIDLael: "Select a user from Entra ID",
+      selectFromEntraIDLabel: "Select a user from Entra ID",
       searchInEntraIDLabel: "Search users in Entra ID",
       addUserBtnLabel: "Add a user",
     },

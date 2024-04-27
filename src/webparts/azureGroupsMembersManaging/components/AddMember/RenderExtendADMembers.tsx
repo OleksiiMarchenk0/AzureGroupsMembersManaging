@@ -20,7 +20,7 @@ export default function RenderExtendADMembers(props: IAddADMembersSimpleProps) {
         <>
           <h2> {strings.Members.addToGroupLabel} {chosenGroupDisplayName}</h2>
           <TextField
-            label="Search users"
+            label={strings.Members.searchInEntraIDLabel}
             value={searchText}
             onChange={(event, newValue) => setSearchText(newValue || '')}
           />

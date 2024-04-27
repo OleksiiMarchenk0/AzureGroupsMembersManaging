@@ -29,7 +29,7 @@ declare interface IAzureGroupsMembersManagingWebPartStrings {
     label:string;
     searchLabel: string;
     addToGroupLabel:string;
-    selectFromEntraIDLael:string;
+    selectFromEntraIDLabel:string;
     searchInEntraIDLabel:string;
     addUserBtnLabel:string;
 
