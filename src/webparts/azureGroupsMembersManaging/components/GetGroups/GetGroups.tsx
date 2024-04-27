@@ -3,14 +3,15 @@ import { useEffect } from "react";
 import { RecognizeIsUserGlobalAdminHelper } from "../../helper/RecognizeIsUserGlobalAdminHelper";
 //import RenderGroups from "./RenderGroups";
 import RenderExtendGroupsView from "./RenderExtendGroupsView";
+import RenderSimpleGroupsView from "./RenderSimpleGroupsView";
 
 
 export default function GetGroups(props: any) {
 const{context, groups, filteredGroups , loading, getChosenGroupIdAndName, view} = props;
 
 
-  const templateRoleId = "62e90394-69f5-4237-9190-012177145e10";
-  const [isAdmin, setIsAdmin] = React.useState<boolean | null>(null);
+const templateRoleId = "62e90394-69f5-4237-9190-012177145e10";
+const [isAdmin, setIsAdmin] = React.useState<boolean | null>(null);
 console.log(`Choosed ${view }view`);
 
 
@@ -43,7 +44,7 @@ console.log(`Choosed ${view }view`);
               {view === "Extended" ? (
               <RenderExtendGroupsView isAdmin={isAdmin} groups={groups} filteredGroups={filteredGroups} getChosenGroupIdAndName={getChosenGroupIdAndName} />
               ) : (
-                <div>Normal view</div>
+                <RenderSimpleGroupsView  isAdmin={isAdmin} groups={groups} filteredGroups={filteredGroups} getChosenGroupIdAndName={getChosenGroupIdAndName}/>
               )}
             </>          
         </div>

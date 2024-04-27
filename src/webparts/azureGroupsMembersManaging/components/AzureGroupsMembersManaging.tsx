@@ -32,6 +32,8 @@ function AzureGroupsMembersManaging(props: any) {
     setChosenGroupId(id);
     setIsGroupChosen(true);
     setChosenGroupDisplayName(displayName)
+    console.log(displayName);
+    
   };
 
   //Getting all groups
