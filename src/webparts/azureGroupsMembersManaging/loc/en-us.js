@@ -29,6 +29,7 @@ define([], function () {
       label: "Select a group",
       searchLabel: "Search groups",
       availableLabel:"Available groups",
+      noAvailableWarningLabel:"No available groups",
       loadingProgressLabel:"Loading groups"
     
 
@@ -41,7 +42,8 @@ define([], function () {
       loadingAADUsersProgressLabel:"Loading all AAD users",
       searchInEntraIDLabel: "Search users in Entra ID",
       addUserBtnLabel: "Add a user",
-      loadingPermissionsProgressLabel:"Loading your permissions"
+      loadingPermissionsProgressLabel:"Loading your permissions",
+      noMembersFoundWarning:"No members found"
     },
   };
 });

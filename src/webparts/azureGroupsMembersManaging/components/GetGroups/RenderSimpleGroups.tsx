@@ -1,11 +1,20 @@
-import * as React from 'react';
-import { IGroup, IListGroupsProps } from './IListGroupsProps';
-import { Dropdown, IDropdownOption, MessageBar, MessageBarType } from '@fluentui/react';
-import * as strings from 'AzureGroupsMembersManagingWebPartStrings';
+import * as React from "react";
+import { IGroup, IListGroupsProps } from "./IListGroupsProps";
+import {
+  Text,
+  Dropdown,
+  IDropdownOption,
+  MessageBar,
+  MessageBarType,
+} from "@fluentui/react";
+import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 export default function RenderGroups(props: IListGroupsProps) {
   const { groups, getChosenGroupIdAndName } = props;
 
-  const handleGroupChange = (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => {
+  const handleGroupChange = (
+    event: React.FormEvent<HTMLDivElement>,
+    option?: IDropdownOption
+  ) => {
     if (option) {
       const groupId = option.key.toString();
       const displayName = option.text;
@@ -21,19 +30,21 @@ export default function RenderGroups(props: IListGroupsProps) {
 
   return (
     <div>
-      <h2>{strings.Group.label}</h2>
-      {(dropdownOptions.length>0) ? (
-
-<Dropdown
-placeholder={strings.Group.label}
-options={dropdownOptions}
-onChange={handleGroupChange}
-styles={{ dropdown: { width: 300 } }} // Adjust width as needed
-/>
-      ):(<MessageBar messageBarType={MessageBarType.warning}>
-        No available groups
-      </MessageBar>)}
-    
+      <Text variant="xLarge" styles={{ root: { fontWeight: "bold" } }}>
+        {strings.Group.label}
+      </Text>
+      {dropdownOptions.length > 0 ? (
+        <Dropdown
+          placeholder={strings.Group.label}
+          options={dropdownOptions}
+          onChange={handleGroupChange}
+          styles={{ dropdown: { width: 300 } }} // Adjust width as needed
+        />
+      ) : (
+        <MessageBar messageBarType={MessageBarType.warning}>
+         {strings.Group.noAvailableWarningLabel}
+        </MessageBar>
+      )}
     </div>
   );
 }

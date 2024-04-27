@@ -29,7 +29,9 @@ define([], function () {
       label: "Wählen Sie eine Gruppe aus",
       searchLabel: "Gruppen durchsuchen",
       availableLabel:"Verfügbare Gruppen",
-      loadingProgressLabel: "Laden von Gruppen"
+      loadingProgressLabel: "Laden von Gruppen",
+      noAvailableWarningLabel: "Keine verfügbaren Gruppen"
+
 
      
 
@@ -42,7 +44,9 @@ define([], function () {
       searchInEntraIDLabel: "Benutzer in Entra ID suchen",
       addUserBtnLabel: "Benutzer hinzufügen",
       loadingAADUsersProgressLabel: "Laden aller AAD-Benutzer",
-      loadingPermissionsProgressLabel: "Laden Ihrer Berechtigungen"
+      loadingPermissionsProgressLabel: "Laden Ihrer Berechtigungen",
+      noMembersFoundWarning: "Keine Mitglieder gefunden"
+
 
     },
   };

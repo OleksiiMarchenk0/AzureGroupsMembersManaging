@@ -29,7 +29,9 @@ define([], function () {
       label: "Selecciona un grupo",
       searchLabel: "Buscar grupos",
       availableLabel:"Grupos disponibles",
-      loadingProgressLabel: "Cargando grupos"
+      loadingProgressLabel: "Cargando grupos",
+      noAvailableWarningLabel: "No hay grupos disponibles"
+
 
   
 
@@ -42,7 +44,9 @@ define([], function () {
       searchInEntraIDLabel: "Buscar usuarios en Entra ID",
       addUserBtnLabel: "Agregar un usuario",
       loadingAADUsersProgressLabel: "Cargando todos los usuarios de AAD",
-      loadingPermissionsProgressLabel: "Cargando tus permisos"
+      loadingPermissionsProgressLabel: "Cargando tus permisos",
+      noMembersFoundWarning: "No se encontraron miembros"
+
 
     },
   };

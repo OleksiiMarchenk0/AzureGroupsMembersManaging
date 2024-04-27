@@ -29,7 +29,9 @@ define([], function () {
         label: "Vyberte skupinu",
         searchLabel: "Vyhľadať skupiny",
         availableLabel:"Dostupné skupiny",
-        loadingProgressLabel: "Načítavanie skupín"
+        loadingProgressLabel: "Načítavanie skupín",
+        noAvailableWarningLabel: "Žiadne dostupné skupiny"
+
 
         
 
@@ -42,7 +44,9 @@ define([], function () {
         searchInEntraIDLabel: "Vyhľadať používateľov v Entra ID",
         addUserBtnLabel: "Pridať používateľa",
         loadingAADUsersProgressLabel: "Načítavanie všetkých používateľov AAD",
-        loadingPermissionsProgressLabel: "Načítavanie vašich oprávnení"
+        loadingPermissionsProgressLabel: "Načítavanie vašich oprávnení",
+        noMembersFoundWarning: "Nenašli sa žiadni členovia"
+
 
       },
     };
