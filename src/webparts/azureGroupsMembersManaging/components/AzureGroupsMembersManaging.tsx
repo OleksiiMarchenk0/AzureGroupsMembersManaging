@@ -15,9 +15,10 @@ import { getADUserService } from "../services/getADUserService";
 
 import { GetOwnedGroups } from "../helper/GetOwnedGroups";
 import { IMember } from "./GetMembers/IMember";
+import { IAzureGroupsMembersManagingProps } from "./IAzureGroupsMembersManagingProps";
 
 
-function AzureGroupsMembersManaging(props: any) {
+function AzureGroupsMembersManaging(props: IAzureGroupsMembersManagingProps) {
   const { context, view } = props;
   const [chosenGroupId, setChosenGroupId] = React.useState<string>("");
   const [chosenGroupDisplayName, setChosenGroupDisplayName] = React.useState<string>("");

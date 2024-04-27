@@ -83,7 +83,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersProps) {
               <Persona
                 key={user.id}
                 text={user.displayName}
-                secondaryText={user.jobTitle} // Or any other secondary information
+                secondaryText={user.jobTitle} 
                 onClick={() => handleSuggestionClick(user.id)}
                 styles={{ root: { cursor: "pointer" } }} // Make the persona clickable
               />

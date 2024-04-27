@@ -1,12 +1,12 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { RecognizeIsUserGlobalAdminHelper } from "../../helper/RecognizeIsUserGlobalAdminHelper";
-//import RenderGroups from "./RenderGroups";
 import RenderExtendGroupsView from "./RenderExtendGroupsView";
 import RenderSimpleGroupsView from "./RenderSimpleGroupsView";
+import { IGetGroupProps } from "./IGroupProps";
 
 
-export default function GetGroups(props: any) {
+export default function GetGroups(props: IGetGroupProps) {
 const{context, groups, filteredGroups , loading, getChosenGroupIdAndName, view} = props;
 
 
