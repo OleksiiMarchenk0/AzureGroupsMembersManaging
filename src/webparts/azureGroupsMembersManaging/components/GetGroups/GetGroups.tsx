@@ -3,15 +3,15 @@ import { useEffect } from "react";
 import { RecognizeIsUserGlobalAdminHelper } from "../../helper/RecognizeIsUserGlobalAdminHelper";
 import RenderExtendGroupsView from "./RenderExtendGroupsView";
 import RenderSimpleGroupsView from "./RenderSimpleGroupsView";
-import { IGetGroupProps } from "./IGroupProps";
+import {  IGetGroupSimpleProps } from "./IGroupProps";
 
 
-export default function GetGroups(props: IGetGroupProps) {
+export default function GetGroups(props: IGetGroupSimpleProps) {
 const{context, groups, filteredGroups , loading, getChosenGroupIdAndName, view} = props;
 
 
 const templateRoleId = "62e90394-69f5-4237-9190-012177145e10";
-const [isAdmin, setIsAdmin] = React.useState<boolean | null>(null);
+const [isAdmin, setIsAdmin] = React.useState<boolean>(false);
 console.log(`Choosed ${view }view`);
 
 

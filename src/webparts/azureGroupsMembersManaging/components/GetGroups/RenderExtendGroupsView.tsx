@@ -1,7 +1,8 @@
 import * as React from 'react'
 import RenderGroups from './RenderGroups'
+import {  IGetGroupRenderProps } from './IGroupProps'
 
-export default function RenderExtendGroupsView(props:any) {
+export default function RenderExtendGroupsView(props:IGetGroupRenderProps) {
     const {isAdmin,groups,filteredGroups,getChosenGroupIdAndName} = props
   return (
     <div>
