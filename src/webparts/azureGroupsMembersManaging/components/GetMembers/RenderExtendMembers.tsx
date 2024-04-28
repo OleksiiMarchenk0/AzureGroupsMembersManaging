@@ -64,7 +64,7 @@ export default function RenderExtendMembers(props: IListMembersSimplestProps) {
               ))}
             </>
           ) : (
-            <MessageBar messageBarType={MessageBarType.warning}>
+            <MessageBar styles={{ root: { marginTop: "5px" } }} messageBarType={MessageBarType.warning}>
               {strings.Members.noMembersFoundWarning}
             </MessageBar>
           )}

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {  IListGroupsProps } from "./IListGroupsProps";
+import { IListGroupsProps } from "./IListGroupsProps";
 import {
   Text,
   Dropdown,
@@ -24,10 +24,12 @@ export default function RenderGroups(props: IListGroupsProps) {
   };
 
   // Convert groups to dropdown options
-  const dropdownOptions: IDropdownOption[] = groups.map((group: IGroupProps) => ({
-    key: group.id,
-    text: group.displayName,
-  }));
+  const dropdownOptions: IDropdownOption[] = groups.map(
+    (group: IGroupProps) => ({
+      key: group.id,
+      text: group.displayName,
+    })
+  );
 
   return (
     <div>
@@ -39,11 +41,14 @@ export default function RenderGroups(props: IListGroupsProps) {
           placeholder={strings.Group.label}
           options={dropdownOptions}
           onChange={handleGroupChange}
-          styles={{ dropdown: { width: 300 } }} // Adjust width as needed
+          styles={{ dropdown: { width: 300, marginTop: "5px" } }} // Adjust width as needed
         />
       ) : (
-        <MessageBar messageBarType={MessageBarType.warning}>
-         {strings.Group.noAvailableWarningLabel}
+        <MessageBar
+          styles={{ root: { marginTop: "5px" } }}
+          messageBarType={MessageBarType.warning}
+        >
+          {strings.Group.noAvailableWarningLabel}
         </MessageBar>
       )}
     </div>

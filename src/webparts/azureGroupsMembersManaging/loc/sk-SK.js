@@ -26,7 +26,7 @@ define([], function () {
         },
       },
       Group: {
-        label: "Vyberte skupinu",
+        label: "Vyberte skupinu z rozbaľovacieho zoznamu",
         searchLabel: "Vyhľadať skupiny",
         availableLabel:"Dostupné skupiny",
         loadingProgressLabel: "Načítavanie skupín",

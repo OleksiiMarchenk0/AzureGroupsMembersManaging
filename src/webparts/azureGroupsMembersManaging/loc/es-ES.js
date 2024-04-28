@@ -26,7 +26,7 @@ define([], function () {
       },
     },
     Group: {
-      label: "Selecciona un grupo",
+      label: "Selecciona un grupo del menú desplegable",
       searchLabel: "Buscar grupos",
       availableLabel:"Grupos disponibles",
       loadingProgressLabel: "Cargando grupos",

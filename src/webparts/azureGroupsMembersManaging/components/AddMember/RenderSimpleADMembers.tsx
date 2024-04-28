@@ -10,8 +10,11 @@ import {
   Stack,
   MessageBar,
   MessageBarType,
+  PersonaSize,
+  mergeStyles,
 } from "@fluentui/react";
 import { IAddADMembersSimpleProps } from "./IAddADMembersProps";
+import styles from "../GetMembers/RenderMembers.module.scss";
 import { IMember } from "../GetMembers/IMember";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
@@ -76,25 +79,26 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
               onChange={handleUserChange}
               styles={{ dropdown: { width: 300, marginTop: "27px" } }} // Adjust width as needed
             />
-            <Text style={{ marginTop: '20px' }}>{strings.OrLabel}</Text>
+            <Text style={{ marginTop: "20px" }}>{strings.OrLabel}</Text>
             <TextField
               label={strings.Members.searchInEntraIDLabel}
               value={searchText}
               onChange={handleSearchInputChange}
-              styles={{ fieldGroup: { width: 300, marginTop:'-1px' } }} // Adjust width as needed
+              styles={{ fieldGroup: { width: 300, marginTop: "-1px" } }} // Adjust width as needed
             />
           </Stack>
-          <Stack horizontal tokens={{ childrenGap: 10 }}>
-            {suggestedUsers.map((user) => (
+
+          {suggestedUsers.map((user) => (
+            <div key={user.id} className={mergeStyles(styles.memberContainer)}>
               <Persona
                 key={user.id}
                 text={user.displayName}
-                secondaryText={user.jobTitle}
+                size={PersonaSize.size32}
                 onClick={() => handleSuggestionClick(user.id)}
                 styles={{ root: { cursor: "pointer" } }} // Make the persona clickable
               />
-            ))}
-          </Stack>
+            </div>
+          ))}
           <DefaultButton
             disabled={!selectedUserId}
             onClick={() => addUsers(selectedUserId)}
@@ -102,7 +106,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
             styles={{ root: { marginTop: "15px" } }} // Make the persona clickable
           />
           {showWarning && (
-            <MessageBar messageBarType={MessageBarType.warning}>
+            <MessageBar  styles={{ root: { marginTop: "5px" } }} messageBarType={MessageBarType.warning}>
               {strings.Members.noMembersFoundWarning}
             </MessageBar>
           )}

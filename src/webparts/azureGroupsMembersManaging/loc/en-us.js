@@ -26,7 +26,7 @@ define([], function () {
       },
     },
     Group: {
-      label: "Select a group",
+      label: "Select a group from dropdown",
       searchLabel: "Search groups",
       availableLabel:"Available groups",
       noAvailableWarningLabel:"No available groups",
