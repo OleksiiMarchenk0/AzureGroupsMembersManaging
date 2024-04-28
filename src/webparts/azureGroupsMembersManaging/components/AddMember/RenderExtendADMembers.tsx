@@ -46,8 +46,8 @@ export default function RenderExtendADMembers(props: IAddADMembersSimpleProps) {
                 horizontal
                 verticalAlign="center"
                 className={mergeStyles(
-                  styles.userContainer,
-                  user.isNew && styles.newUser
+                  styles.userContainer
+                 
                 )}
               >
                 <Persona
@@ -64,7 +64,7 @@ export default function RenderExtendADMembers(props: IAddADMembersSimpleProps) {
             ))
           ) : (
             <MessageBar messageBarType={MessageBarType.warning}>
-              {strings.Group.noAvailableWarningLabel}
+              {strings.Members.noMembersFoundWarning}
             </MessageBar>
           )}
         </>

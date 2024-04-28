@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IGroup, IListGroupsProps } from "./IListGroupsProps";
+import {  IListGroupsProps } from "./IListGroupsProps";
 import {
   Text,
   Dropdown,
@@ -8,6 +8,7 @@ import {
   MessageBarType,
 } from "@fluentui/react";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
+import { IGroupProps } from "./IGroupProps";
 export default function RenderGroups(props: IListGroupsProps) {
   const { groups, getChosenGroupIdAndName } = props;
 
@@ -23,7 +24,7 @@ export default function RenderGroups(props: IListGroupsProps) {
   };
 
   // Convert groups to dropdown options
-  const dropdownOptions: IDropdownOption[] = groups.map((group: IGroup) => ({
+  const dropdownOptions: IDropdownOption[] = groups.map((group: IGroupProps) => ({
     key: group.id,
     text: group.displayName,
   }));

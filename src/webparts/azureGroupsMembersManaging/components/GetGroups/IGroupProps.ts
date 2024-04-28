@@ -5,34 +5,29 @@ interface IGroupProps {
   displayName: string;
 }
 
-interface IGetGroupProps {
+interface IGetGroupBaseProps {
+  groups: IGroupProps[];
+  filteredGroups: IGroupProps[];
+  getChosenGroupIdAndName: (id: string, displayName: string) => void;
+}
+
+interface IGetGroupSimpleProps extends IGetGroupBaseProps {
   context: WebPartContext;
-  groups: IGroupProps[];
-  filteredGroups: IGroupProps[];
   loading: boolean;
-  getChosenGroupIdAndName: (id: string, displayName: string) => void;
   view: string;
-  isAdmin:boolean;
 }
 
-interface IGetGroupSimpleProps {
-  context: WebPartContext;
-  groups: IGroupProps[];
-  filteredGroups: IGroupProps[];
-  loading: boolean;
-  getChosenGroupIdAndName: (id: string, displayName: string) => void;
-  view: string;
-
+interface IGetGroupProps extends IGetGroupSimpleProps {
+  isAdmin: boolean;
 }
 
-
-interface IGetGroupRenderProps {
-
-  groups: IGroupProps[];
-  filteredGroups: IGroupProps[];
-
-  getChosenGroupIdAndName: (id: string, displayName: string) => void;
-
-  isAdmin:boolean;
+interface IGetGroupRenderProps extends IGetGroupBaseProps {
+  isAdmin: boolean;
 }
-export { IGroupProps, IGetGroupProps,IGetGroupSimpleProps, IGetGroupRenderProps };
+
+export {
+  IGroupProps,
+  IGetGroupProps,
+  IGetGroupSimpleProps,
+  IGetGroupRenderProps,
+};

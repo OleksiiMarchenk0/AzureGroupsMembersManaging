@@ -1,24 +1,17 @@
 import { IMember } from "./IMember";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
-interface IListMembersSimplestProps {
-  members: IMember[]; // Array of member objects
-  removeUser: (userId: string) => void; // Function to remove a user
-  isGroupChosen: boolean; // Flag indicating whether a group is chosen
-  chosenGroupDisplayName:string;
-  
 
+interface IListMembersSimplestProps {
+  members: IMember[];
+  removeUser: (userId: string) => void;
+  isGroupChosen: boolean;
+  chosenGroupDisplayName: string;
 }
 
+interface IListMembersProps extends IListMembersSimplestProps {
+  loading: boolean;
+  view: string;
+  context: WebPartContext;
+}
 
-  // Define the props interface for the RenderMembers component
- interface IListMembersProps {
-    members: IMember[]; // Array of member objects
-    removeUser: (userId: string) => void; // Function to remove a user
-    isGroupChosen: boolean; // Flag indicating whether a group is chosen
-    chosenGroupDisplayName:string;
-    loading:boolean;
-    view: string;
-    context: WebPartContext
-  }
-
-  export {IListMembersSimplestProps, IListMembersProps}
+export { IListMembersSimplestProps, IListMembersProps };

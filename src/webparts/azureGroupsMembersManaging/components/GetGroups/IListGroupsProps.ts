@@ -1,12 +1,6 @@
-// IListGroupsProps interface
+import { IGroupProps } from "./IGroupProps";
+
 export interface IListGroupsProps {
-    groups: IGroup[];
-    getChosenGroupIdAndName: (id: string,displayname:string) => void;
-  }
-  
-  // IGroup interface
-  export interface IGroup {
-    id: string;
-    displayName: string;
-    // Add more properties as needed
-  }
+  groups: IGroupProps[];
+  getChosenGroupIdAndName: (id: string, displayname: string) => void;
+}

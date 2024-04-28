@@ -1,8 +1,9 @@
 import * as React from "react";
-import { IGroup, IListGroupsProps } from "./IListGroupsProps";
+import { IListGroupsProps } from "./IListGroupsProps";
 import styles from "./RenderGroups.module.scss";
 import { Stack, Text, TextField } from "@fluentui/react";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
+import { IGroupProps } from "./IGroupProps";
 
 export default function RenderGroups(props: IListGroupsProps) {
   const [selectedGroupId, setSelectedGroupId] = React.useState<string | null>(
@@ -21,7 +22,7 @@ export default function RenderGroups(props: IListGroupsProps) {
     console.log("Selected Group ID:", groupId);
   };
 
-  const renderGroupItem = (group: IGroup, index: number) => {
+  const renderGroupItem = (group: IGroupProps, index: number) => {
     const isSelected = selectedGroupId === group.id;
     return (
       <div

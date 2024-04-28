@@ -3,5 +3,5 @@ export interface IMember {
     displayName: string;
     imageUrl: string;
     jobTitle: string;
-    isNew?:boolean;
+   // isNew?:boolean;
   }
