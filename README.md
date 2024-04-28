@@ -1,13 +1,13 @@
-# azure-groups-members-managing
+# azure-groups-members-managing-webpart
 
 ## Summary
 
-- Main purpose of solution is simple managing of Azure group members:
+- Main purpose of solution is simplify managing of Azure group members:
   - Global administrator has possibility to manage membership all of the Azure groups
   - Owners of Azure groups has possibilitty to manage membership only for their groups
 
 
-![Extended view](image-2.png)
+![Extended view](image-1.png)
 - Solution has simple and extended view of webpart. 
 - Screenshot from above represents extended view. 
 - Managing of view is possible from property pane.
