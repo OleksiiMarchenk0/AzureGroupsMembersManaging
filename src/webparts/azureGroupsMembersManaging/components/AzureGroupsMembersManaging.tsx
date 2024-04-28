@@ -33,7 +33,7 @@ function AzureGroupsMembersManaging(props: IAzureGroupsMembersManagingProps) {
     setChosenGroupId(id);
     setIsGroupChosen(true);
     setChosenGroupDisplayName(displayName)
-    console.log(displayName);
+
     
   };
 
@@ -151,6 +151,7 @@ function AzureGroupsMembersManaging(props: IAzureGroupsMembersManagingProps) {
         context={context}
         groups={groups}
         getChosenGroupIdAndName={getChosenGroupIdAndName}
+        chosenGroupId = {chosenGroupId}
         loading={loading}
         filteredGroups={filteredGroups}
         view={view}

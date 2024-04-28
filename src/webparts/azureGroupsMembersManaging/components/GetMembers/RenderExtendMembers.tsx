@@ -31,9 +31,6 @@ export default function RenderExtendMembers(props: IListMembersSimplestProps) {
           </Text>
           {members && members.length > 0 ? (
             <>
-        
-
-
               <TextField
                 label={strings.Members.searchLabel}
                 value={searchText}

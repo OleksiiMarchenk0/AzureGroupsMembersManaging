@@ -9,12 +9,12 @@ import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 
 export default function GetGroups(props: IGetGroupSimpleProps) {
-const{context, groups, filteredGroups , loading, getChosenGroupIdAndName, view} = props;
+const{context, groups, filteredGroups , loading, getChosenGroupIdAndName, view,  chosenGroupId} = props;
 
 
 const templateRoleId = "62e90394-69f5-4237-9190-012177145e10";
 const [isAdmin, setIsAdmin] = React.useState<boolean>(false);
-console.log(`Choosed ${view }view`);
+
 
 
   // set isAdmin
@@ -44,9 +44,9 @@ console.log(`Choosed ${view }view`);
         <div>
     <>
               {view === "Extended" ? (
-              <RenderExtendGroupsView isAdmin={isAdmin} groups={groups} filteredGroups={filteredGroups} getChosenGroupIdAndName={getChosenGroupIdAndName} />
+              <RenderExtendGroupsView isAdmin={isAdmin} groups={groups} filteredGroups={filteredGroups} getChosenGroupIdAndName={getChosenGroupIdAndName}  chosenGroupId={chosenGroupId} />
               ) : (
-                <RenderSimpleGroupsView  isAdmin={isAdmin} groups={groups} filteredGroups={filteredGroups} getChosenGroupIdAndName={getChosenGroupIdAndName}/>
+                <RenderSimpleGroupsView  isAdmin={isAdmin} groups={groups} filteredGroups={filteredGroups} getChosenGroupIdAndName={getChosenGroupIdAndName} chosenGroupId={chosenGroupId}/>
               )}
             </>          
         </div>

@@ -12,18 +12,17 @@ export default function RenderGroups(props: IListGroupsProps) {
   const [selectedGroupDisplayName, setSselectedGroupDisplayName] =
     React.useState<string | null>(null);
   const [searchText, setSearchText] = React.useState<string>("");
-  const { groups, getChosenGroupIdAndName } = props;
+  const { groups, getChosenGroupIdAndName , chosenGroupId} = props;
   console.log(selectedGroupDisplayName);
 
   const handleGroupClick = (groupId: string, displayName: string) => {
     getChosenGroupIdAndName(groupId, displayName);
     setSelectedGroupId(groupId);
     setSselectedGroupDisplayName(displayName);
-    console.log("Selected Group ID:", groupId);
   };
 
   const renderGroupItem = (group: IGroupProps, index: number) => {
-    const isSelected = selectedGroupId === group.id;
+    const isSelected = selectedGroupId === group.id|| chosenGroupId === group.id;
     return (
       <div
         key={group.id}

@@ -9,12 +9,14 @@ interface IGetGroupBaseProps {
   groups: IGroupProps[];
   filteredGroups: IGroupProps[];
   getChosenGroupIdAndName: (id: string, displayName: string) => void;
+  chosenGroupId:string;
 }
 
 interface IGetGroupSimpleProps extends IGetGroupBaseProps {
   context: WebPartContext;
   loading: boolean;
   view: string;
+ 
 }
 
 interface IGetGroupProps extends IGetGroupSimpleProps {

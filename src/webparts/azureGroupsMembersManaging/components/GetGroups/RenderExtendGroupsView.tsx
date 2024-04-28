@@ -5,7 +5,7 @@ import { Spinner, SpinnerSize } from "@fluentui/react";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 export default function RenderExtendGroupsView(props: IGetGroupRenderProps) {
-  const { isAdmin, groups, filteredGroups, getChosenGroupIdAndName } = props;
+  const { isAdmin, groups, filteredGroups, getChosenGroupIdAndName , chosenGroupId} = props;
   return (
     <div>
       <>
@@ -20,6 +20,7 @@ export default function RenderExtendGroupsView(props: IGetGroupRenderProps) {
             <RenderGroups
               groups={groups}
               getChosenGroupIdAndName={getChosenGroupIdAndName}
+              chosenGroupId={chosenGroupId}
             />
           </>
         ) : (
@@ -27,6 +28,7 @@ export default function RenderExtendGroupsView(props: IGetGroupRenderProps) {
             <RenderGroups
               groups={filteredGroups}
               getChosenGroupIdAndName={getChosenGroupIdAndName}
+              chosenGroupId={chosenGroupId}
             />
           </>
         )}
