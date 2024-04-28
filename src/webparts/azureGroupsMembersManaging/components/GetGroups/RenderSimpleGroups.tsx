@@ -10,7 +10,7 @@ import {
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 import { IGroupProps } from "./IGroupProps";
 export default function RenderGroups(props: IListGroupsProps) {
-  const { groups, getChosenGroupIdAndName } = props;
+  const { groups, getChosenGroupIdAndName, chosenGroupId } = props;
 
   const handleGroupChange = (
     event: React.FormEvent<HTMLDivElement>,
@@ -28,6 +28,8 @@ export default function RenderGroups(props: IListGroupsProps) {
     (group: IGroupProps) => ({
       key: group.id,
       text: group.displayName,
+      selected: group.id ===chosenGroupId,
+      
     })
   );
 
