@@ -38,7 +38,7 @@ define([], function () {
       },
       Members: {
         label: "Členovia skupiny",
-        serchLabel: "Vyhľadať členov",
+        searchLabel: "Vyhľadať členov",
         addToGroupLabel: "Pridať členov do skupiny",
         selectFromEntraIDLabel: "Vyberte používateľa z Entra ID",
         searchInEntraIDLabel: "Vyhľadať používateľov v Entra ID",

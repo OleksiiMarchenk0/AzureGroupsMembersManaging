@@ -30,7 +30,7 @@ export default function RenderSimpleMembers(props: IListMembersSimplestProps) {
     <>
       {isGroupChosen && (
         <>
-          <Text variant="xLarge" styles={{ root: { fontWeight: "bold" } }}>
+          <Text variant="large" styles={{ root: { fontWeight: "bold" } }}>
             {strings.Members.label} {chosenGroupDisplayName}
           </Text>
           {members && members.length > 0 ? (

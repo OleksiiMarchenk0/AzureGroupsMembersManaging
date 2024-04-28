@@ -53,7 +53,12 @@ export default function RenderGroups(props: IListGroupsProps) {
         value={searchText}
         onChange={(event, newValue) => setSearchText(newValue || "")}
       />
-      <Stack horizontal wrap tokens={{ childrenGap: 10 }}>
+      <Stack
+        styles={{ root: { marginTop: "5px" } }}
+        horizontal
+        wrap
+        tokens={{ childrenGap: 10 }}
+      >
         {filteredGroups.map(renderGroupItem)}
       </Stack>
     </div>

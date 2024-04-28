@@ -58,7 +58,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
     <>
       {isGroupChosen && (
         <>
-          <Text variant="xLarge" styles={{ root: { fontWeight: "bold" } }}>
+          <Text variant="large"  styles={{ root: { fontWeight: "bold" } }}>
             {" "}
             {strings.Members.addToGroupLabel} {chosenGroupDisplayName}
           </Text>
@@ -78,7 +78,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
               label={strings.Members.searchInEntraIDLabel}
               value={searchText}
               onChange={handleSearchInputChange}
-              styles={{ fieldGroup: { width: 300 } }} // Adjust width as needed
+              styles={{ fieldGroup: { width: 300, marginTop:'-1px' } }} // Adjust width as needed
             />
           </Stack>
           <Stack horizontal tokens={{ childrenGap: 10 }}>

@@ -36,7 +36,7 @@ define([], function () {
     },
     Members: {
       label: "Members of the group",
-      serchLabel: "Search members",
+      searchLabel: "Search members",
       addToGroupLabel: "Add members to group",
       selectFromEntraIDLabel: "Select a user from Entra ID",
       loadingAADUsersProgressLabel:"Loading all AAD users",

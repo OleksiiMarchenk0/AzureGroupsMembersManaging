@@ -38,7 +38,7 @@ define([], function () {
     },
     Members: {
       label: "Mitglieder der Gruppe",
-      serchLabel: "Mitglieder suchen",
+      searchLabel: "Mitglieder suchen",
       addToGroupLabel: "Mitglieder zur Gruppe hinzufügen",
       selectFromEntraIDLabel: "Wählen Sie einen Benutzer aus Entra ID",
       searchInEntraIDLabel: "Benutzer in Entra ID suchen",

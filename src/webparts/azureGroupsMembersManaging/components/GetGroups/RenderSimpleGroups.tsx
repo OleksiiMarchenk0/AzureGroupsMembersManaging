@@ -31,7 +31,7 @@ export default function RenderGroups(props: IListGroupsProps) {
   return (
     <div>
       <Text variant="xLarge" styles={{ root: { fontWeight: "bold" } }}>
-        {strings.Group.label}
+        {strings.Group.availableLabel}
       </Text>
       {dropdownOptions.length > 0 ? (
         <Dropdown

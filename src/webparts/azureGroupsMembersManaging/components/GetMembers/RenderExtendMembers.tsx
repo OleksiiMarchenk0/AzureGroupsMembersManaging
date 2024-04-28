@@ -25,12 +25,15 @@ export default function RenderExtendMembers(props: IListMembersSimplestProps) {
     <>
       {isGroupChosen && (
         <>
-          <Text variant="xLarge" styles={{ root: { fontWeight: "bold" } }}>
+          <Text variant="large" styles={{ root: { fontWeight: "bold" } }}>
             {strings.Members.label}
             {chosenGroupDisplayName}
           </Text>
           {members && members.length > 0 ? (
             <>
+        
+
+
               <TextField
                 label={strings.Members.searchLabel}
                 value={searchText}

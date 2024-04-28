@@ -30,7 +30,7 @@ export default function RenderExtendADMembers(props: IAddADMembersSimpleProps) {
     <>
       {isGroupChosen && (
         <>
-          <Text variant="xLarge" styles={{ root: { fontWeight: "bold" } }}>
+          <Text variant="large" styles={{ root: { fontWeight: "bold" } }}>
             {" "}
             {strings.Members.addToGroupLabel} {chosenGroupDisplayName}
           </Text>

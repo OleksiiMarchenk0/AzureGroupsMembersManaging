@@ -10,7 +10,7 @@ function GetMembers(props: IListMembersProps) {
   const { isGroupChosen, members, loading, removeUser,view, chosenGroupDisplayName } = props;
 
   return (
-    <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+    <div style={{ marginTop: '15px', marginBottom: '15px' }}>
       {loading ? (
          <Spinner size={SpinnerSize.large} label={strings.Members.loadingPermissionsProgressLabel} />
       ) : (

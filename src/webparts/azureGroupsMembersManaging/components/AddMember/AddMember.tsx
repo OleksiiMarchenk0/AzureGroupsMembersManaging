@@ -10,7 +10,7 @@ import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 export default function AddMember(props: IAddADMembersProps) {
   const {  isGroupChosen, addUsers,loading,adusers, chosenGroupDisplayName , view, context, groupId} = props;
   return (
-    <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+    <div style={{ marginTop: '15px', marginBottom: '15px' }}>
       {loading ? (
         <Spinner size={SpinnerSize.large} label={strings.Members.loadingAADUsersProgressLabel} />
    
