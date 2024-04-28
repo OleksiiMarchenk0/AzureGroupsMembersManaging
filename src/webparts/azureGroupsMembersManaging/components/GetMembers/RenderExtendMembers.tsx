@@ -26,8 +26,8 @@ export default function RenderExtendMembers(props: IListMembersSimplestProps) {
       {isGroupChosen && (
         <>
           <Text variant="large" styles={{ root: { fontWeight: "bold" } }}>
-            {strings.Members.label}
-            {chosenGroupDisplayName}
+            {`${strings.Members.label} ${chosenGroupDisplayName}`}
+             
           </Text>
           {members && members.length > 0 ? (
             <>

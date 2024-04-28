@@ -1,6 +1,5 @@
 import * as React from "react";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
-// import styles from './AzureGroupsMembersManaging.module.scss';
 
 import GetMembers from "./GetMembers/GetMembers";
 import GetGroups from "./GetGroups/GetGroups";
