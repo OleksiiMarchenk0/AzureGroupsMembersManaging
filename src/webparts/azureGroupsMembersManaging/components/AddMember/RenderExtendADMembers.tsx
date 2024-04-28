@@ -19,12 +19,14 @@ export default function RenderExtendADMembers(props: IAddADMembersSimpleProps) {
   const [searchText, setSearchText] = React.useState<string>("");
 
   const filteredUsers = searchText
-    ? adusers.filter(
-        (user: IMember) =>
-          user.displayName.toLowerCase().indexOf(searchText.toLowerCase()) !==
-          -1
+  ? adusers.filter((user: IMember) =>
+      (
+        (user.displayName && user.displayName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) ||
+        (user.mail && user.mail.toLowerCase().indexOf(searchText.toLowerCase()) !== -1)
       )
-    : adusers;
+    )
+  : adusers;
+
 
   return (
     <>

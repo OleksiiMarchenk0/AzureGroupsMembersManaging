@@ -40,7 +40,8 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
   const updateSuggestedUsers = (text: string) => {
     const filtered = adusers.filter(
       (user: IMember) =>
-        user.displayName.toLowerCase().indexOf(text.toLowerCase()) !== -1
+      (user.displayName && user.displayName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) ||
+      (user.mail && user.mail.toLowerCase().indexOf(searchText.toLowerCase()) !== -1)
     );
     setSuggestedUsers(filtered);
     setShowWarning(filtered.length === 0 && text !== "");
