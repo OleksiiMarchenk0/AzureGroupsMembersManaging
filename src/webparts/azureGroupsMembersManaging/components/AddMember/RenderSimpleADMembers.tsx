@@ -8,6 +8,8 @@ import {
   TextField,
   Persona,
   Stack,
+  MessageBar,
+  MessageBarType,
 } from "@fluentui/react";
 import { IAddADMembersSimpleProps } from "./IAddADMembersProps";
 import { IMember } from "../GetMembers/IMember";
@@ -18,6 +20,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [searchText, setSearchText] = useState<string>("");
   const [suggestedUsers, setSuggestedUsers] = useState<IMember[]>([]);
+  const [showWarning, setShowWarning] = useState<boolean>(false);
 
   const handleUserChange = (
     event: React.FormEvent<HTMLDivElement>,
@@ -37,6 +40,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
         user.displayName.toLowerCase().indexOf(text.toLowerCase()) !== -1
     );
     setSuggestedUsers(filtered);
+    setShowWarning(filtered.length === 0 && text !== "");
   };
 
   const handleSearchInputChange = (
@@ -58,8 +62,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
     <>
       {isGroupChosen && (
         <>
-          <Text variant="large"  styles={{ root: { fontWeight: "bold" } }}>
-            {" "}
+          <Text variant="large" styles={{ root: { fontWeight: "bold" } }}>
             {strings.Members.addToGroupLabel} {chosenGroupDisplayName}
           </Text>
           <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 10 }}>
@@ -98,6 +101,11 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
             text={strings.Members.addUserBtnLabel}
             styles={{ root: { marginTop: "15px" } }} // Make the persona clickable
           />
+          {showWarning && (
+            <MessageBar messageBarType={MessageBarType.warning}>
+              {strings.Members.noMembersFoundWarning}
+            </MessageBar>
+          )}
         </>
       )}
     </>
