@@ -19,14 +19,15 @@ export default function RenderExtendADMembers(props: IAddADMembersSimpleProps) {
   const [searchText, setSearchText] = React.useState<string>("");
 
   const filteredUsers = searchText
-  ? adusers.filter((user: IMember) =>
-      (
-        (user.displayName && user.displayName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) ||
-        (user.mail && user.mail.toLowerCase().indexOf(searchText.toLowerCase()) !== -1)
+    ? adusers.filter(
+        (user: IMember) =>
+          (user.displayName &&
+            user.displayName.toLowerCase().indexOf(searchText.toLowerCase()) !==
+              -1) ||
+          (user.mail &&
+            user.mail.toLowerCase().indexOf(searchText.toLowerCase()) !== -1)
       )
-    )
-  : adusers;
-
+    : adusers;
 
   return (
     <>
@@ -42,30 +43,40 @@ export default function RenderExtendADMembers(props: IAddADMembersSimpleProps) {
             onChange={(event, newValue) => setSearchText(newValue || "")}
           />
           {filteredUsers && filteredUsers.length > 0 ? (
-            filteredUsers.map((user: IMember) => (
-              <Stack
-                key={user.id}
-                horizontal
-                verticalAlign="center"
-                className={mergeStyles(
-                  styles.userContainer
-                 
-                )}
-              >
-                <Persona
-                  imageUrl={user.imageUrl} // Provide the URL of the user's image
-                  text={user.displayName} // Display name of the user
-                  secondaryText={user.jobTitle} // Job title or secondary information
-                />
-                <DefaultButton
-                  onClick={() => addUsers(user.id)} // Function to add the user
-                  iconProps={{ iconName: "Add" }} // Use the Add icon
-                  className={styles.addButton} // Apply the styles from SCSS
-                />
-              </Stack>
-            ))
+            <Stack className={mergeStyles(styles.usersContainer)}>
+              {filteredUsers.map((user: IMember) => (
+                <Stack
+                  key={user.id}
+                  horizontal
+                  verticalAlign="center"
+                  className={mergeStyles(styles.userContainer)}
+                >
+                  {user.imageUrl ? (
+                    <Persona
+                      imageUrl={user.imageUrl} // Provide the URL of the user's image
+                      text={user.displayName} // Display name of the user
+                      secondaryText={user.jobTitle} // Job title or secondary information
+                    />
+                  ) : (
+                    <Persona
+                      text={user.displayName} // Display name of the user
+                      secondaryText={user.jobTitle} // Job title or secondary information
+                    />
+                  )}
+
+                  <DefaultButton
+                    onClick={() => addUsers(user.id)} // Function to add the user
+                    iconProps={{ iconName: "Add" }} // Use the Add icon
+                    className={styles.addButton} // Apply the styles from SCSS
+                  />
+                </Stack>
+              ))}
+            </Stack>
           ) : (
-            <MessageBar styles={{ root: { marginTop: "5px" } }} messageBarType={MessageBarType.warning}>
+            <MessageBar
+              styles={{ root: { marginTop: "5px" } }}
+              messageBarType={MessageBarType.warning}
+            >
               {strings.Members.noMembersFoundWarning}
             </MessageBar>
           )}

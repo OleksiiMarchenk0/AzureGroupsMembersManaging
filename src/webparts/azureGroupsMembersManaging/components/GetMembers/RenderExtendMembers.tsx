@@ -1,9 +1,10 @@
 import * as React from "react";
-import { MessageBar, MessageBarType, Text, TextField } from "@fluentui/react";
+import { MessageBar, MessageBarType, Stack, Text, TextField } from "@fluentui/react";
 import { IListMembersSimplestProps } from "./IListMembersProps";
 import { Persona, DefaultButton } from "@fluentui/react";
 import { mergeStyles } from "@fluentui/react/lib/Styling";
 import styles from "./RenderMembers.module.scss"; // Import the SCSS file
+import userStyles from "../AddMember/RenderADMembers.module.scss";
 import { IMember } from "./IMember";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
@@ -36,7 +37,8 @@ export default function RenderExtendMembers(props: IListMembersSimplestProps) {
                 value={searchText}
                 onChange={(event, newValue) => setSearchText(newValue || "")}
               />
-              {filteredMembers.map((member: IMember) => (
+               <Stack className={userStyles.usersContainer}>
+               {filteredMembers.map((member: IMember) => (
                 <div
                   key={member.id}
                   className={mergeStyles(
@@ -59,6 +61,8 @@ export default function RenderExtendMembers(props: IListMembersSimplestProps) {
                   />
                 </div>
               ))}
+               </Stack>
+            
             </>
           ) : (
             <MessageBar styles={{ root: { marginTop: "5px" } }} messageBarType={MessageBarType.warning}>

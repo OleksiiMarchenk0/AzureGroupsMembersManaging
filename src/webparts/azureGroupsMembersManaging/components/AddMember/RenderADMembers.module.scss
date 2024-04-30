@@ -5,6 +5,11 @@
      display: inline-block;
      width: 30%;
   }
+  .usersContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
   
   .addButton {
     position: absolute;

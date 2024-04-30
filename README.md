@@ -23,7 +23,7 @@
 
 ## Used Node Version
 
-![version](https://img.shields.io/badge/version-18.20.0-green.svg)
+![version](https://img.shields.io/badge/version-18.20.2-green.svg)
 
 ## Applies to
 

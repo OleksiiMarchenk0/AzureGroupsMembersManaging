@@ -4,5 +4,4 @@ export interface IMember {
     mail:string;
     imageUrl: string;
     jobTitle: string;
-   // isNew?:boolean;
   }

@@ -93,6 +93,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
             <div key={user.id} className={mergeStyles(styles.memberContainer)}>
               <Persona
                 key={user.id}
+                imageUrl={user.imageUrl}
                 text={user.displayName}
                 size={PersonaSize.size32}
                 onClick={() => handleSuggestionClick(user.id)}
