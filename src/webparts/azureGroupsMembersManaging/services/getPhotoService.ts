@@ -9,7 +9,7 @@ export const getPhotoService = async (context: any, userId: string) => {
       .responseType('blob')
       .get();
 
-    console.log('Response:', response);
+
 
     if (response) {
       return URL.createObjectURL(response);

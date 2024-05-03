@@ -76,12 +76,11 @@ function AzureGroupsMembersManaging(props: IAzureGroupsMembersManagingProps) {
     try {
       const membersData = await getMembersService(context, chosenGroupId);
       if (membersData) {
-        const membersWithPhotos = await Promise.all(
-          membersData.map(async (member: IMember) => {
-            const photoData = await getPhotoService(context, member.id);
-            return { ...member, imageUrl: photoData };
-          })
-        );
+        let membersWithPhotosPromises = membersData.map((member:IMember)=>{
+          return fetchUserWithPhoto(member)
+        })
+        const membersWithPhotos = await Promise.all(membersWithPhotosPromises)
+
         setMembers(membersWithPhotos);
       } else {
         console.error("Error: Invalid data structure");
@@ -97,19 +96,24 @@ function AzureGroupsMembersManaging(props: IAzureGroupsMembersManagingProps) {
     fetchMembers();
   }, [chosenGroupId]);
 
+  const fetchUserWithPhoto = async (user: IMember) => {
+    const photoData = await getPhotoService(context, user.id);
+    return { ...user, imageUrl: photoData };
+  };
+
   // Get AD Users
   React.useEffect(() => {
     const fetchUsers = async () => {
       try {
         let usersData = await getADUserService(context);
         if (usersData) {
-          let usersWithPhotos: IMember[] = await Promise.all(
-            usersData.map(async (user: IMember) => {
-              const photoData = await getPhotoService(context, user.id);
-              return { ...user, imageUrl: photoData };
-            })
-          );
-
+          let usersWithPhotosPromises = usersData.map((user:IMember) => {
+           return  fetchUserWithPhoto(user)
+          })
+      
+          
+        let usersWithPhotos: IMember[] = await Promise.all(usersWithPhotosPromises);
+          
           const actualMemberIds: string[] = members.map((member) => member.id);
           usersWithPhotos = usersWithPhotos.filter(
             (user: IMember) => actualMemberIds.indexOf(user.id) === -1
