@@ -1,0 +1,44 @@
+name: Build and Deploy SPFx
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18.20.2'
+
+    - name: Install dependencies
+      run: |
+        npm install -g gulp
+        npm install
+
+    - name: Decode certificate
+      run: |
+        echo "${{ secrets.CERT_PFX_BASE64 }}" | base64 --decode > cert.pfx
+
+    - name: Bundle SPFx project
+      run: gulp bundle --ship
+
+    - name: Package SPFx solution
+      run: gulp package-solution --ship
+
+    - name: Deploy to SharePoint Online
+      env:
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        TENANT_ID: ${{ secrets.TENANT_ID }}
+        CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
+        TENANT_URL: ${{ secrets.TENANT_URL }}
+      run: |
+        gulp deploy
