@@ -8,7 +8,7 @@ import userStyles from "../AddMember/RenderADMembers.module.scss";
 import { IMember } from "./IMember";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
-export default function RenderExtendMembers(props: IListMembersSimplestProps) {
+export default function RenderExtendMembers(props: IListMembersSimplestProps):JSX.Element {
   const { members, removeUser, isGroupChosen, chosenGroupDisplayName } = props;
   const [searchText, setSearchText] = React.useState<string>("");
   console.log(chosenGroupDisplayName);

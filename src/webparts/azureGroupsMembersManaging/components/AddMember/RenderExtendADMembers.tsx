@@ -14,7 +14,7 @@ import { IMember } from "../GetMembers/IMember";
 import { IAddADMembersSimpleProps } from "./IAddADMembersProps";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
-export default function RenderExtendADMembers(props: IAddADMembersSimpleProps) {
+export default function RenderExtendADMembers(props: IAddADMembersSimpleProps):JSX.Element {
   const { adusers, addUsers, isGroupChosen, chosenGroupDisplayName } = props;
   const [searchText, setSearchText] = React.useState<string>("");
 

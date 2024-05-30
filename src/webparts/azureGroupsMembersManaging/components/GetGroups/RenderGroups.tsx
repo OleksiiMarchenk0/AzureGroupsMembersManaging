@@ -5,7 +5,7 @@ import { Stack, Text, TextField } from "@fluentui/react";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 import { IGroupProps } from "./IGroupProps";
 
-export default function RenderGroups(props: IListGroupsProps) {
+export default function RenderGroups(props: IListGroupsProps):JSX.Element {
   const [selectedGroupId, setSelectedGroupId] = React.useState<string | null>(
     null
   );
@@ -15,13 +15,13 @@ export default function RenderGroups(props: IListGroupsProps) {
   const { groups, getChosenGroupIdAndName , chosenGroupId} = props;
   console.log(selectedGroupDisplayName);
 
-  const handleGroupClick = (groupId: string, displayName: string) => {
+  const handleGroupClick = (groupId: string, displayName: string):void => {
     getChosenGroupIdAndName(groupId, displayName);
     setSelectedGroupId(groupId);
     setSselectedGroupDisplayName(displayName);
   };
 
-  const renderGroupItem = (group: IGroupProps, index: number) => {
+  const renderGroupItem = (group: IGroupProps, index: number): JSX.Element => {
     const isSelected = selectedGroupId === group.id|| chosenGroupId === group.id;
     return (
       <div

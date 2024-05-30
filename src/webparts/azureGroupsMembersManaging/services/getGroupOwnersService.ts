@@ -1,7 +1,7 @@
 import { MSGraphClient } from "@microsoft/sp-http";
 
 
-export const getGroupOwnersService = (context: any, groupId:string) => {
+export const getGroupOwnersService = (context: any, groupId:string):Promise<any> => {
     return context.msGraphClientFactory
         .getClient()
         .then((client: MSGraphClient) => {

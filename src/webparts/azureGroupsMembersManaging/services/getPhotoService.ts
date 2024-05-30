@@ -1,6 +1,6 @@
 import { MSGraphClient } from "@microsoft/sp-http";
 
-export const getPhotoService = async (context: any, userId: string) => {
+export const getPhotoService = async (context: any, userId: string):Promise<any> => {
   try {
     const client: MSGraphClient = await context.msGraphClientFactory.getClient();
     const response = await client

@@ -1,7 +1,7 @@
 import { MSGraphClient } from "@microsoft/sp-http";
 
 
-export const removeMemberService = (context: any, groupId:string, userId:string) => {
+export const removeMemberService = (context: any, groupId:string, userId:string):Promise<any> => {
    
 
     return context.msGraphClientFactory

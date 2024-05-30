@@ -5,7 +5,7 @@ import { Spinner, SpinnerSize } from "@fluentui/react";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 
-export default function RenderSimpleGroupsView(props: IGetGroupRenderProps) {
+export default function RenderSimpleGroupsView(props: IGetGroupRenderProps):JSX.Element {
   const { isAdmin, groups, filteredGroups, getChosenGroupIdAndName ,chosenGroupId} = props;
   
   return (

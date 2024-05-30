@@ -3,22 +3,24 @@ import { getGroupOwnersService } from "../services/getGroupOwnersService";
 import { getGroupsService } from "../services/getGroupsService";
 import { getMeService } from "../services/getMeService";
 import { IMember } from "../components/GetMembers/IMember";
+import {
+  IGroupPromise,
+  IGroupProps,
+} from "../components/GetGroups/IGroupProps";
 
 export async function GetOwnedGroups(context: WebPartContext): Promise<any> {
   let groupsData = await getGroupsService(context);
 
-  async function getGroupOwners() {
-    interface MyObject {
-      groupId: string;
-      groupOwnersResponse: any;
-    }
-    const resultArray: MyObject[] = [];
+  async function getGroupOwners(): Promise<any> {
+    const resultArray: IGroupPromise[] = [];
 
     // Fetch owners for each group and collect promises
-    const promises = groupsData.map(async (group: any) => {
+    const promises = groupsData.map(async (group: IGroupProps) => {
       const groupId: string = group.id;
-      const groupOwnersPromise = getGroupOwnersService(context, group.id);
-      const groupOwnersResponse = await groupOwnersPromise;
+      const groupOwnersResponse = await getGroupOwnersService(
+        context,
+        group.id
+      );
       resultArray.push({ groupId, groupOwnersResponse });
     });
 
@@ -32,7 +34,7 @@ export async function GetOwnedGroups(context: WebPartContext): Promise<any> {
     const owners = await getGroupOwners();
 
     const me = await getMeService(context);
-    let myGroupsIds = owners.filter((o) => {
+    const myGroupsIds = owners.filter((o:IGroupPromise) => {
       // Iterate through groupOwnersResponse array for each owner
       return o.groupOwnersResponse.some(
         (response: IMember) => response.id === me.id
@@ -40,7 +42,7 @@ export async function GetOwnedGroups(context: WebPartContext): Promise<any> {
     });
 
     groupsData = groupsData.filter((group: any) => {
-      let groupIds = myGroupsIds.map((owner) => owner.groupId);
+      const groupIds = myGroupsIds.map((owner:any) => owner.groupId);
 
       return groupIds.indexOf(group.id) !== -1;
     });

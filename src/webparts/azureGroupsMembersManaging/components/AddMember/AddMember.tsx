@@ -7,7 +7,7 @@ import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 
 
-export default function AddMember(props: IAddADMembersProps) {
+export default function AddMember(props: IAddADMembersProps):JSX.Element {
   const {  isGroupChosen, addUsers,loading,adusers, chosenGroupDisplayName , view, context, groupId} = props;
   return (
     <div style={{ marginTop: '15px', marginBottom: '15px' }}>

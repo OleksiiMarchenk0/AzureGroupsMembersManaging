@@ -6,7 +6,7 @@ import { Spinner, SpinnerSize } from "@fluentui/react";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 
-function GetMembers(props: IListMembersProps) {
+function GetMembers(props: IListMembersProps):JSX.Element {
   const { isGroupChosen, members, loading, removeUser,view, chosenGroupDisplayName } = props;
 
   return (

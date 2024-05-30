@@ -9,13 +9,13 @@ import {
 } from "@fluentui/react";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 import { IGroupProps } from "./IGroupProps";
-export default function RenderGroups(props: IListGroupsProps) {
+export default function RenderGroups(props: IListGroupsProps):JSX.Element {
   const { groups, getChosenGroupIdAndName, chosenGroupId } = props;
 
   const handleGroupChange = (
     event: React.FormEvent<HTMLDivElement>,
     option?: IDropdownOption
-  ) => {
+  ):void => {
     if (option) {
       const groupId = option.key.toString();
       const displayName = option.text;

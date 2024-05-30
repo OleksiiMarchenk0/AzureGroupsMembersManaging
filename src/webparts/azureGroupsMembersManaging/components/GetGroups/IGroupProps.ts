@@ -18,6 +18,10 @@ interface IGetGroupSimpleProps extends IGetGroupBaseProps {
   view: string;
  
 }
+interface IGroupPromise {
+  groupId: string;
+  groupOwnersResponse: any;
+}
 
 interface IGetGroupProps extends IGetGroupSimpleProps {
   isAdmin: boolean;
@@ -32,4 +36,5 @@ export {
   IGetGroupProps,
   IGetGroupSimpleProps,
   IGetGroupRenderProps,
+  IGroupPromise
 };

@@ -13,7 +13,7 @@ import styles from "./RenderMembers.module.scss";
 import { IMember } from "./IMember";
 import { IListMembersSimplestProps } from "./IListMembersProps";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
-export default function RenderSimpleMembers(props: IListMembersSimplestProps) {
+export default function RenderSimpleMembers(props: IListMembersSimplestProps):JSX.Element {
   const { members, removeUser, isGroupChosen, chosenGroupDisplayName } = props;
   const [searchText, setSearchText] = React.useState<string>("");
 

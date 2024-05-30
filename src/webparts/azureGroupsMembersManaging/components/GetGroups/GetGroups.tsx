@@ -8,7 +8,7 @@ import { Spinner, SpinnerSize } from "@fluentui/react";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 
-export default function GetGroups(props: IGetGroupSimpleProps) {
+export default function GetGroups(props: IGetGroupSimpleProps):JSX.Element {
 const{context, groups, filteredGroups , loading, getChosenGroupIdAndName, view,  chosenGroupId} = props;
 
 
@@ -19,7 +19,7 @@ const [isAdmin, setIsAdmin] = React.useState<boolean>(false);
 
   // set isAdmin
   useEffect(() => {
-    async function checkAdminStatus() {
+    async function checkAdminStatus():Promise<void> {
       try {
         const isAdmin = await RecognizeIsUserGlobalAdminHelper(
           context,
@@ -32,7 +32,10 @@ const [isAdmin, setIsAdmin] = React.useState<boolean>(false);
       }
     }
 
-    checkAdminStatus();
+    checkAdminStatus().catch((error)=>{
+      console.log(error);
+      
+    });
   }, [context, templateRoleId]);
 
 

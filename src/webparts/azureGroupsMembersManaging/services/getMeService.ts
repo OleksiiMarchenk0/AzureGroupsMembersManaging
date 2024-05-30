@@ -1,6 +1,6 @@
 import { MSGraphClient } from "@microsoft/sp-http";
 
-export const getMeService = (context: any) => {
+export const getMeService = (context: any):Promise<any> => {
   return context.msGraphClientFactory
     .getClient()
     .then((client: MSGraphClient) => {

@@ -16,7 +16,9 @@ import { IMember } from "./GetMembers/IMember";
 import { IAzureGroupsMembersManagingProps } from "./IAzureGroupsMembersManagingProps";
 import { getPhotoService } from "../services/getPhotoService";
 
-function AzureGroupsMembersManaging(props: IAzureGroupsMembersManagingProps) {
+function AzureGroupsMembersManaging(
+  props: IAzureGroupsMembersManagingProps
+): JSX.Element {
   const { context, view } = props;
   const [chosenGroupId, setChosenGroupId] = React.useState<string>("");
   const [chosenGroupDisplayName, setChosenGroupDisplayName] =
@@ -29,15 +31,65 @@ function AzureGroupsMembersManaging(props: IAzureGroupsMembersManagingProps) {
   const [filteredGroups, setFilteredGroups] = React.useState<[]>([]);
   const [adusers, setadusers] = React.useState<IMember[]>([]);
 
-  const getChosenGroupIdAndName = (id: string, displayName: string) => {
+  const getChosenGroupIdAndName = (id: string, displayName: string): void => {
     setChosenGroupId(id);
     setIsGroupChosen(true);
     setChosenGroupDisplayName(displayName);
   };
+    // Remove user from group
+    const removeUser = async (userId: string):Promise<void> => {
+      try {
+        await removeMemberService(context, chosenGroupId, userId);
+        setMembers((members: IMember[]) =>
+          members.filter((member: IMember) => member.id !== userId)
+        );
+      } catch (error) {
+        console.error("Error fetching members:", error);
+      }
+    };
+  
+    //Add user to group
+    const addUsers = async (userId: string):Promise<void> => {
+      try {
+        const addedUser = adusers.filter(
+          (aduser: IMember) => aduser.id === userId
+        );
+        await setMembersService(context, chosenGroupId, [userId]);
+        setMembers((prevMembers) => [...prevMembers, ...addedUser]);
+      } catch (error) {
+        console.error("Error adding members:", error);
+      }
+    };
+
+  const fetchUserWithPhoto = async (user: IMember):Promise<IMember> => {
+    const photoData = await getPhotoService(context, user.id);
+    return { ...user, imageUrl: photoData??undefined };
+  };
+  //Getting members
+  const fetchMembers = async (): Promise<void> => {
+    try {
+      const membersData = await getMembersService(context, chosenGroupId);
+      if (membersData) {
+        const membersWithPhotosPromises = membersData.map((member: IMember) => {
+          return fetchUserWithPhoto(member);
+        });
+        const membersWithPhotos = await Promise.all(membersWithPhotosPromises);
+
+        setMembers(membersWithPhotos);
+      } else {
+        console.error("Error: Invalid data structure");
+      }
+    } catch (error) {
+      console.error("Error fetching members:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   //Getting all groups
   React.useEffect(() => {
-    const fetchAllGroups = async () => {
+    const fetchAllGroups = async (): Promise<void> => {
       try {
         const groupsData = await getGroupsService(context);
         if (groupsData) {
@@ -51,12 +103,17 @@ function AzureGroupsMembersManaging(props: IAzureGroupsMembersManagingProps) {
         setLoading(false);
       }
     };
-    fetchAllGroups();
+    // Handling the promise correctly
+    fetchAllGroups().catch((error) => {
+      console.error("Error during fetchAllGroups:", error);
+    });
   }, []);
 
   //Getting filteredGroups
   React.useEffect(() => {
-    const fetchFilteredGroups = async (context: WebPartContext) => {
+    const fetchFilteredGroups = async (
+      context: WebPartContext
+    ): Promise<void> => {
       try {
         const { groupsData } = await GetOwnedGroups(context);
         if (groupsData) {
@@ -69,51 +126,32 @@ function AzureGroupsMembersManaging(props: IAzureGroupsMembersManagingProps) {
       }
     };
 
-    fetchFilteredGroups(context);
+    fetchFilteredGroups(context).catch((error) => {
+      console.error("Error during fetchFilteredGroups:", error);
+    });
   }, []);
-  //Getting members
-  const fetchMembers = async () => {
-    try {
-      const membersData = await getMembersService(context, chosenGroupId);
-      if (membersData) {
-        let membersWithPhotosPromises = membersData.map((member:IMember)=>{
-          return fetchUserWithPhoto(member)
-        })
-        const membersWithPhotos = await Promise.all(membersWithPhotosPromises)
 
-        setMembers(membersWithPhotos);
-      } else {
-        console.error("Error: Invalid data structure");
-      }
-    } catch (error) {
-      console.error("Error fetching members:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   React.useEffect(() => {
-    fetchMembers();
+    fetchMembers().catch((error) => {
+      console.error("Error during fetchMembers:", error);
+    });
   }, [chosenGroupId]);
-
-  const fetchUserWithPhoto = async (user: IMember) => {
-    const photoData = await getPhotoService(context, user.id);
-    return { ...user, imageUrl: photoData };
-  };
 
   // Get AD Users
   React.useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchUsers = async ():Promise<void> => {
       try {
-        let usersData = await getADUserService(context);
+        const usersData = await getADUserService(context);
         if (usersData) {
-          let usersWithPhotosPromises = usersData.map((user:IMember) => {
-           return  fetchUserWithPhoto(user)
-          })
-      
-          
-        let usersWithPhotos: IMember[] = await Promise.all(usersWithPhotosPromises);
-          
+          const usersWithPhotosPromises = usersData.map((user: IMember) => {
+            return fetchUserWithPhoto(user);
+          });
+
+          let usersWithPhotos: IMember[] = await Promise.all(
+            usersWithPhotosPromises
+          );
+
           const actualMemberIds: string[] = members.map((member) => member.id);
           usersWithPhotos = usersWithPhotos.filter(
             (user: IMember) => actualMemberIds.indexOf(user.id) === -1
@@ -130,35 +168,12 @@ function AzureGroupsMembersManaging(props: IAzureGroupsMembersManagingProps) {
       }
     };
 
-    fetchUsers();
+    fetchUsers().catch((error) => {
+      console.error("Error during fetchUsers:", error);
+    });
   }, [members]);
 
-  // Remove user from group
-  const removeUser = async (userId: string) => {
-    try {
-      await removeMemberService(context, chosenGroupId, userId);
-      setMembers((members: IMember[]) =>
-        members.filter((member: IMember) => member.id !== userId)
-      );
-    } catch (error) {
-      console.error("Error fetching members:", error);
-    } finally {
-    }
-  };
 
-  //Add user to group
-  const addUsers = async (userId: string) => {
-    try {
-      const addedUser = adusers.filter(
-        (aduser: IMember) => aduser.id === userId
-      );
-      await setMembersService(context, chosenGroupId, [userId]);
-      setMembers((prevMembers) => [...prevMembers, ...addedUser]);
-    } catch (error) {
-      console.error("Error adding members:", error);
-    } finally {
-    }
-  };
   return (
     <section>
       <GetGroups

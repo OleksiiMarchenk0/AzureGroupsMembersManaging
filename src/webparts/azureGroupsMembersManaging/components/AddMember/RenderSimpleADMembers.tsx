@@ -18,7 +18,7 @@ import styles from "../GetMembers/RenderMembers.module.scss";
 import { IMember } from "../GetMembers/IMember";
 import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
-export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
+export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps):JSX.Element {
   const { adusers, addUsers, isGroupChosen, chosenGroupDisplayName } = props;
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [searchText, setSearchText] = useState<string>("");
@@ -28,7 +28,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
   const handleUserChange = (
     event: React.FormEvent<HTMLDivElement>,
     option?: IDropdownOption
-  ) => {
+  ):void => {
     if (option) {
       setSelectedUserId(option.key.toString());
     } else {
@@ -37,7 +37,7 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
   };
 
   // Update suggested users based on search text
-  const updateSuggestedUsers = (text: string) => {
+  const updateSuggestedUsers = (text: string):void => {
     const filtered = adusers.filter(
       (user: IMember) =>
       (user.displayName && user.displayName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) ||
@@ -50,13 +50,13 @@ export default function RenderSimpleADMembers(props: IAddADMembersSimpleProps) {
   const handleSearchInputChange = (
     event: React.FormEvent<HTMLInputElement>,
     newValue?: string
-  ) => {
+  ):void => {
     const newSearchText = newValue || "";
     setSearchText(newSearchText);
     updateSuggestedUsers(newSearchText);
   };
 
-  const handleSuggestionClick = (userId: string) => {
+  const handleSuggestionClick = (userId: string) :void=> {
     setSelectedUserId(userId);
     setSearchText("");
     setSuggestedUsers([]);
