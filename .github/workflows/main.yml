@@ -6,32 +6,56 @@ on:
       - master
 
 env:
-  packagePath: sharepoint/solution/azure-groups-members-managing.sppkg
+  workingDir: ${{ github.workspace }}
+  sppkgFileName: azure-groups-members-managing.sppkg
 
 jobs:
   build:
     runs-on: windows-latest
-    
+    environment: omitdev
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.20.2'
 
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v1.4.2
-      with:
-        node-version: 18.20.2
+      - name: Install dependencies
+        run: npm install
 
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Build solution
-      run: gulp build
-      
-    - name: Test solution
-      run: npm test
-              
-    - name: Bundle and package
-      run: |
-        gulp bundle --ship
-        gulp package-solution --ship
+      - name: Build solution
+        run: npm run build
+
+      - name: Test solution
+        run: npm test
+
+      - name: Bundle and package
+        run: |
+          gulp bundle --ship
+          gulp package-solution --ship
+        id: package-solution
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sppkg
+          path: sharepoint/solution/azure-groups-members-managing.sppkg
+
+      - name: Download artifact
+        uses : actions/download-artifact@v2
+        with:
+          name: sppkg
+          path: .
+
+      - name: Install PnP PowerShell
+        run: |
+          Install-Module -Name PnP.PowerShell -RequiredVersion 2.2.0 -AllowClobber -Force
+          Import-Module PnP.PowerShell
+        shell: pwsh
+
+      - name: Deploy to appcatalog
+        shell: pwsh
+        run: |
+          ./Deploy/AddApp.ps1 -Url ${{ vars.Url }} -Tenant ${{ vars.Tenant }} -ClientId ${{ secrets.ClientId }} -CertificateBase64Encoded ${{ secrets.Certificate_Base64 }} -SppkgFilePath '${{ github.workspace }}/${{ env.sppkgFileName }}'
