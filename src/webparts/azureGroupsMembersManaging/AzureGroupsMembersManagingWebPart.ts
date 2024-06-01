@@ -7,13 +7,14 @@ import {
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
-
+import { PropertyFieldNumber } from '@pnp/spfx-property-controls/lib/PropertyFieldNumber';
 import * as strings from 'AzureGroupsMembersManagingWebPartStrings';
 import AzureGroupsMembersManaging from './components/AzureGroupsMembersManaging';
 import { IAzureGroupsMembersManagingProps } from './components/IAzureGroupsMembersManagingProps';
 
 export interface IAzureGroupsMembersManagingWebPartProps {
   view: string;
+  usersPerPage:number;
 }
 
 export default class AzureGroupsMembersManagingWebPart extends BaseClientSideWebPart<IAzureGroupsMembersManagingWebPartProps> {
@@ -29,7 +30,8 @@ export default class AzureGroupsMembersManagingWebPart extends BaseClientSideWeb
         environmentMessage: this._environmentMessage,
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
         context:this.context,
-        view:this.properties.view
+        view:this.properties.view,
+        usersPerPage:this.properties.usersPerPage
         
       }
     );
@@ -117,6 +119,15 @@ export default class AzureGroupsMembersManagingWebPart extends BaseClientSideWeb
                     { key: 'Extended', text: strings.PropertyPaneViewTitle.options.extended }
                   ],
                   disabled: false
+                }),
+                PropertyFieldNumber("usersPerPage", {
+                  key: "usersPerPage",
+                  label: strings.PropertyPaneUsersPerPage.title,
+                  description: strings.PropertyPaneUsersPerPage.description,
+                  value: this.properties.usersPerPage,
+                  maxValue: 20,
+                  minValue: 1,
+                  disabled: this.properties.view ==="Simple"
                 })
               ]
             }
@@ -126,3 +137,5 @@ export default class AzureGroupsMembersManagingWebPart extends BaseClientSideWeb
     };
   }
 }
+
+

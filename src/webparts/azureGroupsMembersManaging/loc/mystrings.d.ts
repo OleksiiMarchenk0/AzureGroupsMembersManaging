@@ -19,6 +19,10 @@ declare interface IAzureGroupsMembersManagingWebPartStrings {
       extended: string;
     };
   };
+  PropertyPaneUsersPerPage:{
+    title:string;
+    description:string;
+  };
   Group: {
     label: string;
     searchLabel: string;

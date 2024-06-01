@@ -19,7 +19,7 @@ import { getPhotoService } from "../services/getPhotoService";
 function AzureGroupsMembersManaging(
   props: IAzureGroupsMembersManagingProps
 ): JSX.Element {
-  const { context, view } = props;
+  const { context, view,usersPerPage } = props;
   const [chosenGroupId, setChosenGroupId] = React.useState<string>("");
   const [chosenGroupDisplayName, setChosenGroupDisplayName] =
     React.useState<string>("");
@@ -193,6 +193,7 @@ function AzureGroupsMembersManaging(
         view={view}
         chosenGroupDisplayName={chosenGroupDisplayName}
         loading={loading}
+        usersPerPage={usersPerPage}
       />
       <AddMember
         context={context}

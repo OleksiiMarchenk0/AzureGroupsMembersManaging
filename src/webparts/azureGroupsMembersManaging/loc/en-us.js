@@ -25,6 +25,10 @@ define([], function () {
         extended: "Extended",
       },
     },
+    PropertyPaneUsersPerPage:{
+      title:"Users per page",
+      description:"Provide count users per page"
+    },
     Group: {
       label: "Select a group from dropdown",
       searchLabel: "Search groups",

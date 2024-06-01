@@ -5,5 +5,6 @@ export interface IAzureGroupsMembersManagingProps {
   isDarkTheme: boolean;
   environmentMessage: string;
   hasTeamsContext: boolean;
-  context: WebPartContext
+  context: WebPartContext;
+  usersPerPage:number;
 }

@@ -7,7 +7,7 @@ import * as strings from "AzureGroupsMembersManagingWebPartStrings";
 
 
 function GetMembers(props: IListMembersProps):JSX.Element {
-  const { isGroupChosen, members, loading, removeUser,view, chosenGroupDisplayName } = props;
+  const { isGroupChosen, members, loading, removeUser,view, chosenGroupDisplayName ,usersPerPage} = props;
 
   return (
     <div style={{ marginTop: '15px', marginBottom: '15px' }}>
@@ -23,6 +23,7 @@ function GetMembers(props: IListMembersProps):JSX.Element {
                   removeUser={removeUser}
                   isGroupChosen={isGroupChosen}
                   chosenGroupDisplayName={chosenGroupDisplayName}
+                  usersPerPage={usersPerPage}
                 />
               </>
             ) : (
